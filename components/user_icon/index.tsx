@@ -40,7 +40,7 @@ const UserIcon = (props:{
                 e.preventDefault()
                 return false
             }}>
-            <div className="flex flex-nowrap flex-row p-4 pb-2 items-center gap-4 border-b-2 border-black"> 
+            <div className="flex flex-nowrap flex-row p-4 items-center gap-4 border-b-2 border-black"> 
                 <Image
                 src={props.image}
                 width={40}
@@ -50,11 +50,14 @@ const UserIcon = (props:{
                 />
                 <h3 className="">Logged in as {props.username}</h3>
             </div>
+            <div className="flex flex-nowrap flex-row p-4 items-center gap-4 border-b-2 border-black"> 
+                <Link href={'/in/'} className="cursor-pointer hover:underline">Messages</Link>
+            </div>
+
             <div className="flex flex-col items-start p-4 gap-2">
                 <Link href={'/in/manage'} className="cursor-pointer hover:underline">Manage account</Link>
                 <Link href={'/in/settings'} className="cursor-pointer hover:underline">Application settings</Link>
-                <Link href={'/in/history'} className="cursor-pointer hover:underline">Account history</Link>
-                <Link href={'/in/msghistory'} className="cursor-pointer hover:underline">Message history</Link>
+                <Link href={'/in/log'} className="cursor-pointer hover:underline">Full account history</Link>
                 <Link href={'/logout'} className="mt-8 text-red-500">Log out</Link>
             </div>
         </div>

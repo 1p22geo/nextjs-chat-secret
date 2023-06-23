@@ -49,6 +49,7 @@ async function sendForm(e:FormEvent){
         return
     }
     // FIXME: this doesn't feel good.
+    // nah, it does now. gonna delete it in the next commit.
     window.location.href = '/in'
 }
 export default function LoginForm(){

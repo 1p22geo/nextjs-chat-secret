@@ -1,7 +1,7 @@
 "use client"
 import { Dispatch, SetStateAction } from "react";
 
-export default async function fetchMessages(session:string, setMessages:Dispatch<SetStateAction<never[]>>){
+export default async function fetchMessages(session:string, setMessages:Dispatch<SetStateAction<never[]>>, callback?:()=>void){
     // console.log("Starting fetchMessages")
     const url = "/api/messages?session="+session + "&n=4"
     // console.log(url)
@@ -19,4 +19,5 @@ export default async function fetchMessages(session:string, setMessages:Dispatch
     else{
         // console.log(res)
     }
+    if(callback)callback();
 }

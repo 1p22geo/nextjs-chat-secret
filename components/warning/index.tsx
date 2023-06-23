@@ -17,7 +17,7 @@ export default function Dialog({status,message,secondary,icon,id,visible, childr
     message:string,
     secondary?:string,
     icon?:string
-    id:string,
+    id?:string,
     visible?:boolean,
     children?:ReactNode
 }){
