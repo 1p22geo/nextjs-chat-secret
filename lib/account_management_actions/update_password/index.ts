@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies, headers } from "next/headers";
+import { createHash } from "crypto";
 import { MongoClient } from "mongodb";
 
 import secrets from "@/lib/globals/secrets";
@@ -11,18 +12,37 @@ import globals from "@/lib/globals";
 const db_name = globals.database.DB_NAME;
 const options = globals.database.DB_CLIENT_OPTIONS;
 
-export default async function UpdateNicknameAction(e: FormData) {
+export default async function UpdatePasswordAction(e: FormData) {
 	const cookie = cookies().get("skyChatSession");
 	if (!cookie) {
 		return;
 	}
 	const id = cookie.value;
 
-	const newNickname = e.get("newNickname");
-	if (!newNickname) {
+	const newPassword = e.get("newPassword");
+	if (!newPassword) {
 		return;
 	}
-	const pname = newNickname.toString();
+	const npass = newPassword.toString();
+	const repeatPass = e.get("repeatPass");
+	if (!repeatPass) {
+		return;
+	}
+	const rpass = repeatPass.toString();
+
+	if(!npass || !rpass || rpass.length < 8 || npass.length < 8 || rpass != npass) return;
+
+
+	const genRanHex = (size: number) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+	const salt = genRanHex(12);
+
+	const hash = createHash("sha256")
+	.update(npass)
+	.update(
+		createHash("sha256")
+			.update(salt, "utf-8").digest("hex")
+	).digest("hex")
 
 	const headersList = headers();
 
@@ -49,7 +69,8 @@ export default async function UpdateNicknameAction(e: FormData) {
 		};
 		const update = {
 			$set: {
-                pname:pname
+				salt:salt,
+				sha256:hash
             },
 		};
         await collection.updateOne(filter, update)
