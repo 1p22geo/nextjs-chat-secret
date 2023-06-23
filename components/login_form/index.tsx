@@ -34,7 +34,7 @@ async function sendForm(e:FormEvent){
         }),
         cache:'no-store'
     });
-    if(res.status === 403){
+    if(res.status === 401){
         document.querySelector("#wait")?.classList.remove("flex")
         document.querySelector("#wait")?.classList.add("hidden")
         document.querySelector("#wrong")?.classList.add("flex")

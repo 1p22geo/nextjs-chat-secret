@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
 				// console.log(`${req_id} : user session NOT found`)
 				// console.timeEnd(req_id)
 				await client.close();
-				return NextResponse.json({}, { status: 403 });
+				return NextResponse.json({}, { status: 401 });
 			} else {
 				// console.log(`${req_id} : user session found`)
 				// console.timeLog(req_id)

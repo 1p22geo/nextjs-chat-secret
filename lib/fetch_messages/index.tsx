@@ -2,9 +2,9 @@
 import { Dispatch, SetStateAction } from "react";
 
 export default async function fetchMessages(session:string, setMessages:Dispatch<SetStateAction<never[]>>){
-    console.log("Starting fetchMessages")
+    // console.log("Starting fetchMessages")
     const url = "/api/messages?session="+session + "&n=4"
-    console.log(url)
+    // console.log(url)
     let res:Response;
     res = await fetch(url);
     for(let n =0;n<10;n++){
@@ -13,11 +13,10 @@ export default async function fetchMessages(session:string, setMessages:Dispatch
     }
     if(res.ok){
     const json = await res.json()
-    console.log(json)
+    // console.log(json)
     setMessages(json.res)
     }
     else{
-        console.log(res)
+        // console.log(res)
     }
-    setTimeout(()=>{fetchMessages(session, setMessages)}, 700)
 }

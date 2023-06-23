@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-const Message = (props:{img:string, user:string, content:string, time:number}) => {
+const Message = (props:{img:string, user:string, content:string, time:number, name:string}) => {
     const sent = new Date(props.time)
     return ( 
     <>
@@ -14,7 +14,10 @@ const Message = (props:{img:string, user:string, content:string, time:number}) =
                 className=""
             />
             <div className="flex items-baseline gap-8">
+            <div className="flex flex-col items-start">
             <h2 className="font-semibold text-base">{props.user}</h2>
+            <h2 className=" font-light text-slate-600 text-sm">{props.name}</h2>
+            </div>
             <h2 className="text-slate-700">{sent.toLocaleString()}</h2>
             </div>
         </div>

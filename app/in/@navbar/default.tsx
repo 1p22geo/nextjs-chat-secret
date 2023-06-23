@@ -1,5 +1,5 @@
 const Default = () => {
-    return ( <h1>{"/in/@navbar/default.js"}</h1> );
+    return null;
 }
  
 export default Default;

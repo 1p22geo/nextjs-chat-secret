@@ -55,6 +55,7 @@ export async function POST(request:NextRequest){
 
         await users.insertOne({
             user:json.uname,
+            pname:json.uname,
             sha256:hash,
             salt:salt,
             added: Date.now() , // unix timestamp in ms,

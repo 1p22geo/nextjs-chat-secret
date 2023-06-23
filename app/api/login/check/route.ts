@@ -28,7 +28,7 @@ export async function POST(request:NextRequest){
         const collection = db.collection('users')
         let user = await collection.findOne({user:json.uname})
         if(!user){
-            return NextResponse.json({}, {status:403});
+            return NextResponse.json({}, {status:401});
 
         }
         const salt = user.salt
@@ -49,7 +49,7 @@ export async function POST(request:NextRequest){
             salt:salt
         })
         if(!user){
-            return NextResponse.json({}, {status:403});
+            return NextResponse.json({}, {status:401});
 
         }
         else{
@@ -68,7 +68,8 @@ export async function POST(request:NextRequest){
                 value: session,
                 path:"/",
                 httpOnly:true,
-                secure:false
+                secure:false,
+                sameSite:"strict"
             })
             return response
         }
