@@ -1,105 +1,41 @@
 "use client"
 
-import { FormEvent } from "react";
 import Dialog from "../warning";
 import Link from "next/link";
+import { sendForm } from "./sendform";
+import { translate } from "@/lang";
 
-async function sendForm(e:FormEvent){
-    e.preventDefault()
-    const target = e.target as typeof e.target & {
-        uname:{value:string},
-        email:{value:string},
-        passwd:{value:string},
-        rpass:{value:string},
-    }
-    const email = target.email.value;
-    const uname = target.uname.value;
-    const passwd = target.passwd.value;
-    const rpass = target.rpass.value;
-   //console.log(email, uname, passwd, rpass)
-    document.querySelector("#warning_repeat")?.classList.remove("flex")
-    document.querySelector("#warning_repeat")?.classList.add("hidden")
-    document.querySelector("#warning_len")?.classList.remove("flex")
-    document.querySelector("#warning_len")?.classList.add("hidden")
-    document.querySelector("#warning_data")?.classList.remove("flex")
-    document.querySelector("#warning_data")?.classList.add("hidden")
-    document.querySelector("#created")?.classList.remove("flex")
-    document.querySelector("#created")?.classList.add("hidden")
-    document.querySelector("#user_conflict")?.classList.remove("flex")
-    document.querySelector("#user_conflict")?.classList.add("hidden")
-    document.querySelector("#creating")?.classList.remove("flex")
-    document.querySelector("#creating")?.classList.add("hidden")
-    if(passwd !== rpass){
-        document.querySelector("#warning_repeat")?.classList.remove("hidden")
-        document.querySelector("#warning_repeat")?.classList.add("flex")
-        return
-    }
-    if(passwd.length<8){
-        document.querySelector("#warning_len")?.classList.remove("hidden")
-        document.querySelector("#warning_len")?.classList.add("flex")
-        return
-    }
-    document.querySelector("#creating")?.classList.add("flex")
-    document.querySelector("#creating")?.classList.remove("hidden")
-    
-    const res = await fetch("/api/login/signup", {
-        method: "POST",
-        body:JSON.stringify({
-            uname:uname,
-            email:email,
-            passwd:passwd,
-            rpass:rpass
-        }),
-        cache:'no-store'
-    });
-    if(!res.ok){
-        if(res.status == 409){
-            document.querySelector("#user_conflict")?.classList.add("flex")
-            document.querySelector("#user_conflict")?.classList.remove("hidden")
-            
-        }
-        else{
-            document.querySelector("#warning_data")?.classList.add("flex")
-            document.querySelector("#warning_data")?.classList.remove("hidden")
-        }
-    }
-    else{
-        document.querySelector("#created")?.classList.add("flex")
-        document.querySelector("#created")?.classList.remove("hidden")
-        
-    }
-    document.querySelector("#creating")?.classList.remove("flex")
-    document.querySelector("#creating")?.classList.add("hidden")
 
-}
 export default function SignInForm(props:{lang:string}){
+    const dict = translate(props.lang)
     return(
         <form onSubmit={sendForm} className="p-8 bg-[#B2C8F7] max-w-[600px] rounded-3xl shadow-2xl mx-auto flex flex-col items-center gap-4">
-                <h1 className=" text-2xl font-semibold">Sign in to SkyChat</h1>
+                <h1 className=" text-2xl font-semibold">{dict.signup.title}</h1>
                 <div className="sm:grid sm:grid-cols-[max-content_auto] flex flex-col items-center text-right gap-2 w-full">
-                    <label htmlFor='uname'>Username:</label>
+                    <label htmlFor='uname'>{dict.signup.username}</label>
                     <input type="text" className="ml-2 outline outline-2 text-left outline-slate-800 p-1" name="uname" id="uname"></input>
                     
-                    <label htmlFor='email'>E-mail address:</label>
+                    <label htmlFor='email'>{dict.signup.email}</label>
                     <input type="email" className="ml-2 outline outline-2 text-left outline-slate-800 p-1" name="email" id="email"></input>
             
-                    <label htmlFor='passwd'>Password:</label>
+                    <label htmlFor='passwd'>{dict.signup.password}</label>
                     <input type="password" className="ml-2 outline outline-2 text-left outline-slate-800 p-1" name="passwd" id="passwd"></input>
                     
-                    <label htmlFor='rpass'>Repeat password:</label>
+                    <label htmlFor='rpass'>{dict.signup.rpass}</label>
                     <input type="password" className="ml-2 outline outline-2 text-left outline-slate-800 p-1" name="rpass" id="rpass"></input>
                 </div>
-                    <Dialog status="error" icon="error" message="The repeated password must be the same as the original password" id="warning_repeat" />
-                    <Dialog status="error" message="A good password is at least 8 characters long." id="warning_len" icon="security" />
-                    <Dialog status="warn" icon="error" message="Something went wrong" id="warning_data" secondary="The data seemed good here, but the server had problems with it" />
-                    <Dialog status="warn" icon="info" message="A user with this username already exists" secondary="Pick a different one or add a digit at the end or smth idk." id="user_conflict"/>
-                    <Dialog status="success" icon="tick" message="Account created" id="created" secondary="You can now log in" >
+                    <Dialog status="error" icon="error" message={dict.signup.warnings.rpass} id="warning_repeat" />
+                    <Dialog status="info" message={dict.signup.warnings.nopick} id="nopass" icon="info" />
+                    <Dialog status="error" message={dict.signup.warnings.len} id="warning_len" icon="security" />
+                    <Dialog status="warn" icon="error" message={dict.signup.warnings.err[0]} id="warning_data" secondary={dict.signup.warnings.err[1]} />
+                    <Dialog status="warn" icon="info" message={dict.signup.warnings.conflict[0]} secondary={dict.signup.warnings.conflict[1]} id="user_conflict"/>
+                    <Dialog status="success" icon="tick" message={dict.signup.warnings.ready[0]} id="created" secondary={dict.signup.warnings.ready[1]} >
                         <Link href={'/'+props.lang+'/login'} className="hover:underline font-bold text-[#07600E]">
-                            here
+                        {dict.signup.warnings.ready[2]}
                         </Link>
                     </Dialog>
-                    <Dialog status="loading" message="Creating account..." id="creating"/>
-                <input type="submit" value={"Submit"} className="bg-[#F35627] cursor-pointer font-semibold text-white p-2 rounded-md"></input>
+                    <Dialog status="loading" message={dict.signup.warnings.wait} id="creating"/>
+                <input type="submit" value={dict.signup.submit} className="bg-[#F35627] cursor-pointer font-semibold text-white p-2 rounded-md"></input>
             </form>
     )
     /*

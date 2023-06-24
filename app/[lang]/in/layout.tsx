@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { ReactNode } from "react";
 import Image from "next/image";
 import UserIcon from "@/components/user_icon";
+import checkSessionCookie from "@/lib/checks/cookie";
 export const revalidate = false;
 
 const MainLayout = async (props: {
@@ -13,24 +14,8 @@ const MainLayout = async (props: {
 		lang:string
 	}
 }) => {
-	const cookie = cookies().get("skyChatSession");
-	if (!cookie) {
-		redirect("/"+props.params.lang);
-	}
-	const id = cookie.value;
-	const headersList = headers();
-
-	const domain = headersList.get("host");
-	////console.log(domain)
-	const url = new URL(`http://${domain}/api/session/check?session=${id}`);
-	// console.log(url)
-
-	const res = await fetch(url, { next: { revalidate: false } });
-	//console.log(res.status)
-	if (!res.ok) {
-		redirect("/"+props.params.lang);
-	}
-	const json = await res.json();
+	
+	const {json} =await checkSessionCookie()
 	//console.log(json.session.user)
 	////console.log(props)
 	return (

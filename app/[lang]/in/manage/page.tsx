@@ -1,41 +1,14 @@
 import PasswordEditComponent from "@/components/account_management/passwd_edit";
 import PublicNicknameEditComponent from "@/components/account_management/pname_edit";
-import { cookies, headers } from "next/headers";
-import { redirect } from "next/navigation";
-import { Suspense } from "react";
+import checkSessionCookie from "@/lib/checks/cookie";
+import checkUser from "@/lib/checks/user";
 
 const AccountManagementPage = async ({ params }: { params: { lang: string } }) => {
-	const cookie = cookies().get("skyChatSession");
-	if (!cookie) {
-		redirect("/");
-	}
-	const id = cookie.value;
 
-
-    const headersList = headers();
-    
-    const domain = headersList.get('host');
-    ////console.log(domain)
-    const url = new URL(`http://${domain}/api/session/check?session=${id}`)
-    // console.log(url)
-    
-    const res = await fetch(url, { next:{revalidate:0}})
-   //console.log(res.status)
-    if(!res.ok){
-        redirect('/')
-    }
-    const json = await res.json()
+	const {json, id, domain} = await checkSessionCookie()
 	// console.log(json)
     
-    const url2 = new URL(`http://${domain}/api/user?session=${id}&user=${json.session.user}`)
-    // console.log(url)
-    
-    const res2 = await fetch(url2, { next:{revalidate:0}})
-   //console.log(res.status)
-    if(!res2.ok){
-        redirect('/')
-    }
-    const json2 = await res2.json()
+    const {json:json2} = await checkUser(domain, id, json.session.user)
 	// console.log(json2)
 
 

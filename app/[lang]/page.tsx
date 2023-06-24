@@ -1,65 +1,36 @@
 import Link from "next/link";
-import { cookies, headers } from "next/headers";
-import { redirect } from "next/navigation";
-import translate from "@/dict";
 import LangSelect from "@/components/lang_select";
+import { translate } from "@/lang";
 
-async function checkCookie(lang: string) {
-	const cookie = cookies().get("skyChatSession");
-	if (!cookie) {
-		return;
-	}
-	const id = cookie.value;
-	const headersList = headers();
 
-	const domain = headersList.get("host");
-	////console.log(domain)
-	const url = new URL(`http://${domain}/api/session/check?session=${id}`);
-	// console.log(url)
-
-	const res = await fetch(url, { next: { revalidate: false } });
-	//console.log(res.status)
-	if (!res.ok) {
-		return;
-	}
-	redirect("/" + lang + "/in");
-}
 
 export default async function Home({ params }: { params: { lang: string } }) {
-	let dict = translate.en;
-	await checkCookie(params.lang);
-	switch (params.lang) {
-		case "en":
-			dict = translate.en;
-			break;
-		case "pl":
-			dict = translate.pl;
-			break;
-		default:
-			redirect("/en");
-	}
+	const dict = translate(params.lang)
 	//<div className='absolute min-h-screen w-screen left-0 top-0 background_gradient'></div>
 	return (
 		<>
-			<LangSelect value={params.lang}/>
+			<LangSelect value={params.lang} />
 			<div className="background_gradient px-8 flex min-h-screen flex-col items-center text-center pb-24">
 				<h1 className="md:text-6xl sm:text-5xl text-4xl mb-6 mt-24 font-semibold">
-					Welcome to SkyChat
+					{dict.index.title}
 				</h1>
-				<h2 className="text-2xl font-extralight">
-					{dict.a}
-				</h2>
+				<h2 className="text-2xl font-extralight">{dict.index.subtitle}</h2>
 				<Link
-					href={params.lang+"/signup"}
+					href={params.lang + "/signup"}
 					className="flex flex-col items-center bg-[#F35627] rounded-xl p-4 gap-2 text-white mt-12 shadow-2xl"
 				>
-					<span className="text-3xl font-semibold">Sign up</span>
-					<span>(for free, no credit card required)</span>
+					<span className="text-3xl font-semibold">
+						{dict.index.button.title}
+					</span>
+					<span>{dict.index.button.subtitle}</span>
 				</Link>
-				<Link href={params.lang+"/login"} className=" hover:underline mt-8 text-sm">
-					Or log in if you already have an account
+				<Link
+					href={params.lang + "/login"}
+					className=" hover:underline mt-8 text-sm"
+				>
+					{dict.index.login}
 				</Link>
-				<h3 className="text-3xl mt-20 mb-8">Our features:</h3>
+				<h3 className="text-3xl mt-20 mb-8">{dict.index.features.title}</h3>
 				<div className="md:grid md:grid-cols-3 flex flex-col max-w-[1000px] gap-16">
 					<div className="flex flex-col items-center">
 						<div className="bg-[#FFD0B5] rounded-full w-24 h-24 p-4 mb-4">
@@ -82,9 +53,9 @@ export default async function Home({ params }: { params: { lang: string } }) {
 								></path>
 							</svg>
 						</div>
-						<h4 className="text-xl mb-2">The fastest delivery in town</h4>
+						<h4 className="text-xl mb-2">{dict.index.features.features[0].title}</h4>
 						<p className="">
-							We send and process your messages as fast as we can.
+							{dict.index.features.features[0].text}
 						</p>
 					</div>
 					<div className="flex flex-col items-center">
@@ -106,10 +77,9 @@ export default async function Home({ params }: { params: { lang: string } }) {
 								</g>
 							</svg>
 						</div>
-						<h4 className="text-xl mb-2">End-to-end security built in</h4>
+						<h4 className="text-xl mb-2">{dict.index.features.features[1].title}</h4>
 						<p className="">
-							All your messages are thoroughly encrypted before even getting
-							sent.
+							{dict.index.features.features[1].text}
 						</p>
 					</div>
 					<div className="flex flex-col items-center">
@@ -129,10 +99,9 @@ export default async function Home({ params }: { params: { lang: string } }) {
 								/>
 							</svg>
 						</div>
-						<h4 className="text-xl mb-2">Direct and broadcast messages</h4>
+						<h4 className="text-xl mb-2">{dict.index.features.features[2].title}</h4>
 						<p className="">
-							You can say anything either to one or two friends or to the whole
-							world.
+							{dict.index.features.features[2].text}
 						</p>
 					</div>
 				</div>

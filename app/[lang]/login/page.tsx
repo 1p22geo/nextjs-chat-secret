@@ -1,10 +1,10 @@
 import LoginForm from "@/components/login_form";
 
-const LoginPage = () => {
+const LoginPage = ({params}:{params:{lang:string}}) => {
     return ( <>
         <div className="w-screen h-screen grid content-center background_gradient">
             <div className="w-fit mx-auto">
-                <LoginForm />
+                <LoginForm lang={params.lang} />
             </div>
         </div>
     </> );
