@@ -37,4 +37,3 @@ next-env.d.ts
 
 #secrets and API keys
 lib/globals/secrets
-ssl/server.key
