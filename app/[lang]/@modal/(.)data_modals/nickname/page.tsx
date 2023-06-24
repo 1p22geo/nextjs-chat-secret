@@ -1,10 +1,10 @@
 import NicknameEditForm from "@/components/account_management/pname_edit/modal";
 import Modal from "@/components/modal";
 
-const NicknameDataModal = () => {
+const NicknameDataModal = ({params}:{params:{lang:string}}) => {
     return ( <>
     <Modal>
-        <NicknameEditForm />
+        <NicknameEditForm lang={params.lang} />
     </Modal>
     </> );
 }

@@ -1,10 +1,10 @@
 import PasswordEditForm from "@/components/account_management/passwd_edit/modal";
 import Modal from "@/components/modal";
 
-const PasswordDataModal = () => {
+const PasswordDataModal = ({params}:{params:{lang:string}}) => {
     return ( <>
     <Modal>
-        <PasswordEditForm />
+        <PasswordEditForm lang={params.lang} />
     </Modal>
     </> );
 }

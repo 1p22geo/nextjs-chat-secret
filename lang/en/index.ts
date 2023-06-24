@@ -14,5 +14,5 @@ export default {
 	dropdown_menu: dropdown_menu,
 	message_bar: message_bar,
 	manage: manage,
-    settings:settings
+	settings: settings,
 };
