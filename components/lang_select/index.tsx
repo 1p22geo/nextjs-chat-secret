@@ -10,6 +10,7 @@ const LangSelect = (props:{value:string}) => {
 				<select
 					name="lang"
 					value={props.value}
+					className="bg-white"
 					onChange={e=>{window.location.replace("/"+e.currentTarget.value)}}
 				>
 					<option value={"en"}  onClick={()=>{window.location.replace("/en")}}>
