@@ -45,7 +45,7 @@ const MainLayout = async (props: {
 			</header>
 				<div className="sm:grid sm:grid-cols-[300px_auto] w-screen flex flex-col min-h-screen background_gradient h-fit">
 					<div>{props.navbar}</div>
-					<div className="sm:w-[calc(100vw-300px)]">{props.children}</div>
+					<div className="sm:w-[calc(100vw-300px)] mt-24">{props.children}</div>
 				</div>
 		</div>
 	);

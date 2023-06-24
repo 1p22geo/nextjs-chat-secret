@@ -29,6 +29,16 @@ export default async function Home() {
   await checkCookie()
   //<div className='absolute min-h-screen w-screen left-0 top-0 background_gradient'></div>
   return (
+    <>
+    <div className='absolute left-0 top-0  grid content-center p-16'>
+      <div className='p-4 flex flex-col items-center gap-2 bg-white rounded-3xl shadow-2xl'>
+        <h3>Language</h3>
+        <select name='lang'>
+          <option value={'en'}>English</option>
+          <option value={'pl'}>Polish</option>
+        </select>
+      </div>
+    </div>
     <div className='background_gradient px-8 flex min-h-screen flex-col items-center text-center pb-24'>
       <h1 className='md:text-6xl sm:text-5xl text-4xl mb-6 mt-24 font-semibold'>Welcome to SkyChat</h1>
       <h2 className='text-2xl font-extralight'>the most modern chat app ever built.</h2>
@@ -65,5 +75,6 @@ export default async function Home() {
       </div>
       
     </div>
+    </>
   )
 }
