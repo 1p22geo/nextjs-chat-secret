@@ -18,9 +18,14 @@ const PublicMessagePage = async () => {
 
     return ( 
         <>
+
+    <div className="w-full flex flex-col mt-8 items-center">
+        <div className="w-fit">
+            <Dialog status="loading" message="Sending message" id="sending"></Dialog>
+            <Dialog status="error" message="Sending message failed" id="sendingfailed"></Dialog>
+        </div>
+    </div>
     <div className="p-8">
-    <Dialog status="loading" message="Sending message" id="sending"></Dialog>
-    <Dialog status="error" message="Sending message failed" id="sendingfailed"></Dialog>
     </div>
     <GeneralMessageFeedComponent type="public" session={id} />
     </> 

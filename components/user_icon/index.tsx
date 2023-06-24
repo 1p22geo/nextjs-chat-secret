@@ -58,7 +58,7 @@ const UserIcon = (props:{
                 <Link href={'/in/manage'} className="cursor-pointer hover:underline">Manage account</Link>
                 <Link href={'/in/settings'} className="cursor-pointer hover:underline">Application settings</Link>
                 <Link href={'/in/log'} className="cursor-pointer hover:underline">Full account history</Link>
-                <div onClick={()=>{fetch("/logout");window.location.assign("/")}} className="mt-8 hover:underline cursor-pointer text-red-500">Log out</div>
+                <div onClick={()=>{window.location.assign("/logout")}} className="mt-8 hover:underline cursor-pointer text-red-500">Log out</div>
             </div>
         </div>
     </div>

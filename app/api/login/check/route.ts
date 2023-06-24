@@ -69,7 +69,8 @@ export async function POST(request:NextRequest){
                 path:"/",
                 httpOnly:true,
                 secure:false,
-                sameSite:"strict"
+                sameSite:"strict",
+                expires:Date.now() + 86_400_000 //one day expires
             })
             return response
         }

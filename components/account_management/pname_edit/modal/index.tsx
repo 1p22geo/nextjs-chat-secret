@@ -5,7 +5,7 @@ import UpdateNicknameAction from "@/lib/account_management_actions/update_nickna
 
 const NicknameEditForm = () => {
     return ( <>
-    <div className="w-full p-8 bg-[#B2C8F7] rounded-3xl flex flex-col items-center gap-4 shadow-2xl">
+    <div className="w-fit p-8 bg-[#B2C8F7] rounded-3xl flex flex-col mx-auto items-center gap-4 shadow-2xl">
         <h1 className="text-lg">Change nickname</h1>
         <form action={UpdateNicknameAction} onSubmit={()=>{window.location.replace("/in/manage")}} className="flex flex-col items-center gap-4">
         <label htmlFor='newNickname'>New nickname:

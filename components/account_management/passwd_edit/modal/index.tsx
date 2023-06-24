@@ -6,7 +6,7 @@ import UpdatePasswordAction from "@/lib/account_management_actions/update_passwo
 const PasswordEditForm = () => {
 	return (
 		<>
-			<div className="w-full p-8 bg-[#B2C8F7] rounded-3xl flex flex-col items-center gap-4 shadow-2xl">
+			<div className="w-fit mx-auto p-8 bg-[#B2C8F7] rounded-3xl flex flex-col items-center gap-4 shadow-2xl">
 				<h1 className="text-lg">Change password</h1>
 				<form
 					action={UpdatePasswordAction}
@@ -59,8 +59,8 @@ const PasswordEditForm = () => {
 					}}
 					className="flex flex-col items-center gap-4"
 				>
-					<label htmlFor="newPassword">
-						New password:
+					<div className="sm:grid sm:grid-cols-[max-content_auto] flex flex-col items-center text-right gap-2 w-full">
+						<label htmlFor="newPassword">New password:</label>
 						<input
 							type="password"
 							className="ml-2 outline outline-2 text-left outline-slate-800 p-1"
@@ -68,17 +68,14 @@ const PasswordEditForm = () => {
 							name="newPassword"
 							id="newPassword"
 						></input>
-					</label>
-					<label htmlFor="repeatPass">
-						Repeat password:
+						<label htmlFor="repeatPass">Repeat password:</label>
 						<input
 							type="password"
 							className="ml-2 outline outline-2 text-left outline-slate-800 p-1"
-							autoFocus
 							name="repeatPass"
 							id="repeatPass"
 						></input>
-					</label>
+					</div>
 					<Dialog
 						status="error"
 						icon="error"

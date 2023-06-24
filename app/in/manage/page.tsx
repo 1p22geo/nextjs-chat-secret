@@ -41,7 +41,7 @@ const AccountManagementPage = async () => {
 
 	return (
 		<>
-			<div className="m-8">
+			<div className="m-8 flex flex-col items-center sm:items-start">
 				<h1 className="text-xl mb-8 font-bold">Account Management</h1>
 				<h2 className="text-lg font-semibold mb-2">Username</h2>
 				<h2 className="text-sm font-base mb-2">

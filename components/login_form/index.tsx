@@ -54,13 +54,12 @@ async function sendForm(e:FormEvent){
 }
 export default function LoginForm(){
     return(
-        <form onSubmit={(e)=>{sendForm(e)}} className="w-full p-8 bg-[#B2C8F7] rounded-3xl flex flex-col items-center gap-4 shadow-2xl">
+        <form onSubmit={(e)=>{sendForm(e)}} className="w-fit p-8 mx-auto bg-[#B2C8F7] rounded-3xl flex flex-col items-center gap-4 shadow-2xl">
                 <h1 className=" text-2xl font-semibold">Log in to SkyChat</h1>
-                <div>
+                <div className="grid grid-cols-[max-content_auto] text-right gap-2 w-full">
+
                 <label htmlFor='uname'>Username:</label>
                 <input type="text" className="ml-2 outline outline-2 outline-slate-800 p-1" name="uname" id="uname"></input>
-                </div>
-                <div>
                 <label htmlFor='passwd'>Password:</label>
                 <input type="password" className="ml-2 outline outline-2 outline-slate-800 p-1" name="passwd" id="passwd"></input>
                 </div>

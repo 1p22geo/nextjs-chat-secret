@@ -74,9 +74,9 @@ async function sendForm(e:FormEvent){
 }
 export default function SignInForm(){
     return(
-        <form onSubmit={sendForm} className="p-8 bg-[#B2C8F7] w-[600px] rounded-3xl shadow-2xl mx-auto flex flex-col items-center gap-4">
+        <form onSubmit={sendForm} className="p-8 bg-[#B2C8F7] max-w-[600px] rounded-3xl shadow-2xl mx-auto flex flex-col items-center gap-4">
                 <h1 className=" text-2xl font-semibold">Sign in to SkyChat</h1>
-                <div className="grid grid-cols-[max-content_auto] text-right gap-2 w-full">
+                <div className="sm:grid sm:grid-cols-[max-content_auto] flex flex-col items-center text-right gap-2 w-full">
                     <label htmlFor='uname'>Username:</label>
                     <input type="text" className="ml-2 outline outline-2 text-left outline-slate-800 p-1" name="uname" id="uname"></input>
                     

@@ -28,7 +28,7 @@ const MainLayout = async (props:{children:ReactNode,navbar:ReactNode}) => {
    //console.log(json.session.user)
     ////console.log(props)
     return (
-            <div className="grid grid-rows-[64px_auto]" id="app_main">
+            <div className="grid grid-rows-[64px_auto] min-h-screen" id="app_main">
                 <header className="bg-[#98AEEB] w-full flex flex-row flex-nowrap items-center">
                 <Image
                     src="/logo.svg"
@@ -41,7 +41,7 @@ const MainLayout = async (props:{children:ReactNode,navbar:ReactNode}) => {
                 <UserIcon image="/user-blue.svg" username={json.session.user}/>
                 </header>
                 <div>
-                <div className="grid grid-cols-[300px_auto] h-[calc(100vh-64px)] background_gradient">
+                <div className="sm:grid sm:grid-cols-[300px_auto] flex flex-col background_gradient h-full">
                     <div>
                     {props.navbar}
                     </div>

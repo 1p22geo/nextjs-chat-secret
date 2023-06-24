@@ -37,12 +37,12 @@ export default function Modal({ children }:{
   return (
     <div
       ref={overlay as unknown as MutableRefObject<HTMLDivElement>}
-      className="fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto bg-black/60"
+      className="fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto grid content-center bg-black/60"
       onClick={onClick}
     >
       <div
         ref={wrapper as unknown as MutableRefObject<HTMLDivElement>}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-10/12 md:w-8/12 lg:w-1/2 p-6"
+        className=" w-full"
       >
         {children}
       </div>

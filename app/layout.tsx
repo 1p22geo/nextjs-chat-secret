@@ -10,10 +10,14 @@ export const metadata = {
   description: 'The most modern chat app so far',
 }
 
-export default function RootLayout(props: {
+
+export default async function RootLayout(props: {
   children: React.ReactNode,
   modal: React.ReactNode
 }) {
+
+  // await checkCookie()
+
   return (
     <html lang="en">
       <body className={inter.className}>
