@@ -2,6 +2,7 @@
 
 import Message from "@/components/message";
 import Dialog from "@/components/warning";
+import { translate } from "@/lang";
 import fetchMessages from "@/lib/fetch_messages";
 import MessageObject from "@/lib/types/message";
 import { MutableRefObject, useEffect, useState } from "react";
@@ -9,7 +10,9 @@ import { MutableRefObject, useEffect, useState } from "react";
 export default function PublicMessageFeed(props: {
 	session: string;
 	callbackRef: MutableRefObject<() => void>;
+	lang:string
 }) {
+	const dict = translate(props.lang)
 	const [messages, setMessages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -36,7 +39,7 @@ export default function PublicMessageFeed(props: {
 		return (
 			<div className="w-full flex flex-col items-center">
 				<div className="w-fit">
-					<Dialog status="loading" message="Loading messages" visible />
+					<Dialog status="loading" message={dict.message_bar.loading} visible />
 				</div>
 			</div>
 		);

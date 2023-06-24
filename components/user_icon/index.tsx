@@ -1,4 +1,5 @@
 "use client"
+import { translate } from "@/lang";
 import Image from "next/image"
 import Link from "next/link";
 
@@ -18,6 +19,7 @@ const UserIcon = (props:{
     username:string,
     lang:string
 }) => {
+    const dict = translate(props.lang)
     
     return ( 
     <div className="flex flex-col items-center ml-auto mr-4 h-full justify-evenly">
@@ -49,17 +51,17 @@ const UserIcon = (props:{
                 alt="user icon"
                 className=""
                 />
-                <h3 className="">Logged in as {props.username}</h3>
+                <h3 className="">{dict.dropdown_menu.loggedin} {props.username}</h3>
             </div>
             <div className="flex flex-nowrap flex-row p-4 items-center gap-4 border-b-2 border-black"> 
-                <Link href={'/'+props.lang+'/in/'} className="cursor-pointer hover:underline">Messages</Link>
+                <Link href={'/'+props.lang+'/in/'} className="cursor-pointer hover:underline">{dict.dropdown_menu.messages}</Link>
             </div>
 
             <div className="flex flex-col items-start p-4 gap-2">
-                <Link href={'/'+props.lang+'/in/manage'} className="cursor-pointer hover:underline">Manage account</Link>
-                <Link href={'/'+props.lang+'/in/settings'} className="cursor-pointer hover:underline">Application settings</Link>
-                <Link href={'/'+props.lang+'/in/log'} className="cursor-pointer hover:underline">Full account history</Link>
-                <div onClick={()=>{window.location.assign('/'+props.lang+"/logout")}} className="mt-8 hover:underline cursor-pointer text-red-500">Log out</div>
+                <Link href={'/'+props.lang+'/in/manage'} className="cursor-pointer hover:underline">{dict.dropdown_menu.manage}</Link>
+                <Link href={'/'+props.lang+'/in/settings'} className="cursor-pointer hover:underline">{dict.dropdown_menu.settings}</Link>
+                <Link href={'/'+props.lang+'/in/log'} className="cursor-pointer hover:underline">{dict.dropdown_menu.log}</Link>
+                <div onClick={()=>{window.location.assign('/'+props.lang+"/logout")}} className="mt-8 hover:underline cursor-pointer text-red-500">{dict.dropdown_menu.logout}</div>
             </div>
         </div>
     </div>

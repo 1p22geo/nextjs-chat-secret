@@ -1,6 +1,8 @@
+import { translate } from "@/lang";
 import Link from "next/link";
 
 export default function NavbarComponent({ params }: { params: { lang: string } }){
+    const dict = translate(params.lang)
     return(
     <>
         <div className="p-8 flex flex-col items-center fixed left-0 top-16 flex-nowrap gap-4">
@@ -11,12 +13,12 @@ export default function NavbarComponent({ params }: { params: { lang: string } }
                 <div className="w-10 h-1 bg-black" ></div>
             </label>
             <div className="max-sm:peer-checked:hidden flex flex-col items-center gap-4 max-sm:bg-[#BED0F7] p-4 max-sm:rounded-2xl max-sm:shadow-2xl">
-            <h3 className="caps font-semibold  text-slate-500 mt-4 max-sm:peer-checked:hidden">Message channels</h3>
-            <Link href={"/"+params.lang+"/in/public"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">Public messages</Link>
-            <Link href={"/"+params.lang+"/in/news"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">News feed</Link>
-            <Link href={"/"+params.lang+"/in/dev"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">{"Developers' feed"}</Link>
-            <h3 className="caps font-semibold text-slate-500 max-sm:peer-checked:hidden mt-4">Direct messages</h3>
-            <Link href={"/"+params.lang+"/in/direct"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">All messages</Link>
+            <h3 className="caps font-semibold  text-slate-500 mt-4 max-sm:peer-checked:hidden">{dict.navbar.titles[0]}</h3>
+            <Link href={"/"+params.lang+"/in/public"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">{dict.navbar.links.channels[0]}</Link>
+            <Link href={"/"+params.lang+"/in/news"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">{dict.navbar.links.channels[1]}</Link>
+            <Link href={"/"+params.lang+"/in/dev"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">{dict.navbar.links.channels[2]}</Link>
+            <h3 className="caps font-semibold text-slate-500 max-sm:peer-checked:hidden mt-4">{dict.navbar.titles[1]}</h3>
+            <Link href={"/"+params.lang+"/in/direct"} className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">{dict.navbar.links.direct}</Link>
             </div>
         </div>
     </>

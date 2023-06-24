@@ -28,7 +28,7 @@ const MainLayout = async (props: {
 					alt="SkyChat logo"
 					className="ml-2"
 				/>
-				<h1 className="self-end ml-4 mb-2 text-2xl font-bold">SkyChat v0.1</h1>
+				<h1 className="self-end ml-4 mb-2 text-2xl font-bold">SkyChat v0.2 beta</h1>
 				<UserIcon image="/user-blue.svg" username={json.session.user} lang={props.params.lang} />
 			</header>
 				<div className="sm:grid sm:grid-cols-[300px_auto] w-screen flex flex-col min-h-screen background_gradient h-fit">

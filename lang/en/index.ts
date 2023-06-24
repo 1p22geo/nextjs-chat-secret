@@ -1,8 +1,18 @@
-import index from './main_page'
-import login from './login'
-import signup from './signup'
+import index from "./main_page";
+import login from "./login";
+import signup from "./signup";
+import navbar from "./navbar";
+import dropdown_menu from "./components/dropdown_menu";
+import message_bar from "./components/message_bar";
+import manage from "./manage";
+import settings from "./settings";
 export default {
-    index:index,
-    login:login,
-    signup:signup
-}
+	index: index,
+	login: login,
+	signup: signup,
+	navbar: navbar,
+	dropdown_menu: dropdown_menu,
+	message_bar: message_bar,
+	manage: manage,
+    settings:settings
+};

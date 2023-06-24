@@ -1,7 +1,7 @@
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 import { NextResponse } from "next/server";
 
-
+export const revalidate = false
 import secrets from "@/lib/globals/secrets"
 const uri = secrets.database.DB_CONN_STRING
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version

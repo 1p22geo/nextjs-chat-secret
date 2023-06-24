@@ -1,13 +1,13 @@
 import DisabledMessageSendForm from "@/components/new_message/disabled";
 import MessageSendForm from "@/components/new_message/enabled";
 
-const UserDashboardPage = () => {
+const UserDashboardPage = (props:{params:{lang:string}}) => {
 
     return ( 
         
             <>
                 
-                <DisabledMessageSendForm />
+                <DisabledMessageSendForm lang={props.params.lang} />
             </>
         
     );

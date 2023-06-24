@@ -56,7 +56,6 @@ export async function GET(request: NextRequest) {
 			} else {
 				// console.log(`${req_id} : user session found`)
 				// console.timeLog(req_id)
-				// fetch some messages
 				const collection2 = db.collection("posts");
 				const agg = [
 					{

@@ -21,7 +21,6 @@ export default function Dialog({status,message,secondary,icon,id,visible, childr
     visible?:boolean,
     children?:ReactNode
 }){
-    
     let svg;
     let showDialog = false;
     if(visible === true){
