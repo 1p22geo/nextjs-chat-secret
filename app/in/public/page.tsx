@@ -19,7 +19,7 @@ const PublicMessagePage = async () => {
     return ( 
         <>
 
-    <div className="w-full flex flex-col mt-8 items-center">
+    <div className="w-full flex flex-col mt-24 items-center sm:items-start">
         <div className="w-fit">
             <Dialog status="loading" message="Sending message" id="sending"></Dialog>
             <Dialog status="error" message="Sending message failed" id="sendingfailed"></Dialog>

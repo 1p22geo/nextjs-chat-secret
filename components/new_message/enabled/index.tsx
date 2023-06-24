@@ -8,7 +8,7 @@ const MessageSendForm = (props:{callbackRef:MutableRefObject<()=>void>, onSubmit
     <>
     <div className="fixed right-0 bottom-0 w-full max-w-[600px] p-8 ">
         <form onSubmit={(e:FormEvent<HTMLFormElement>)=>props.onSubmit(e, props.session, props.callbackRef)} className="flex items-center">
-        <input id="msg" name="msg" autoFocus={true} type="text" className={`rounded-full p-3 text-xl w-full shadow-2xl flex accent-[#F35627] caret-[#F35627]`} placeholder="Type in a message..."></input>
+        <input id="msg" name="msg" autoFocus={true} type="text" className={`rounded-full p-3 text-xl w-full shadow-2xl pr-28 flex accent-[#F35627] caret-[#F35627]`} placeholder="Type in a message..."></input>
         <label htmlFor="submitmsg" className={`p-2 bg-[#F35627] cursor-pointer w-24 justify-evenly -ml-[102px] rounded-full flex items-center font-semibold text-white`}>
             <h3>Send</h3>
             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

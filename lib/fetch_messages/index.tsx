@@ -3,7 +3,17 @@ import { Dispatch, SetStateAction } from "react";
 
 export default async function fetchMessages(session:string, setMessages:Dispatch<SetStateAction<never[]>>, callback?:()=>void){
     // console.log("Starting fetchMessages")
-    const url = "/api/messages?session="+session + "&n=5"
+    const messageNumItem = localStorage.getItem("skyChatConfig.MaxMessageNum")
+    let initMessageNum = 4;
+    if(messageNumItem){
+        try{
+            initMessageNum = parseInt(messageNumItem.toString())
+        }
+        catch{
+            initMessageNum = 4;
+        }
+    }
+    const url = "/api/messages?session="+session + "&n=" + initMessageNum
     // console.log(url)
     let res:Response;
     res = await fetch(url);

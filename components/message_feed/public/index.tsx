@@ -42,7 +42,7 @@ export default function PublicMessageFeed(props: {
 		);
 	}
 	return (
-		<div className="flex flex-col items-center sm:items-start gap-8 mb-24">
+		<div className="flex flex-col px-4 items-center sm:items-start gap-8 mb-24">
 			{messages.map((message: MessageObject, index) => {
 				return (
 					<Message

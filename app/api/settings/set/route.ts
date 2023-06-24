@@ -19,16 +19,6 @@ export async function POST(request:NextRequest){
     const res = NextResponse.json({}, {status:201});
 
     switch (name) {
-        case "msg_num":
-            cookies().set({
-                name:"skyChatConfig.MaxMessageNum",
-                value:value,
-                path:"/",
-                httpOnly:true,
-                secure:false,
-                sameSite:"strict"
-            });
-            break;
         case "lang":
             cookies().set({
                 name:"skyChatConfig.LocaleLang",

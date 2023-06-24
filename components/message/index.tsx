@@ -4,7 +4,7 @@ const Message = (props:{img:string, user:string, content:string, time:number, na
     const sent = new Date(props.time)
     return ( 
     <>
-    <div className="bg-[#BED0F7] shadow-2xl w-fit p-4 rounded-3xl">
+    <div className="bg-[#BED0F7] shadow-2xl w-fit max-w-full p-4 rounded-3xl">
         <div className="flex items-center gap-4">
             <Image
                 src={props.img}
@@ -18,12 +18,12 @@ const Message = (props:{img:string, user:string, content:string, time:number, na
             <h2 className="font-semibold text-base">{props.name}</h2>
             <h2 className=" font-light text-slate-600 text-xs">{props.user}</h2>
             </div>
-            <h2 className="text-slate-700">{sent.toLocaleString()}</h2>
+            <h2 className="text-slate-600">{sent.toLocaleString()}</h2>
             </div>
         </div>
-        <div className="mt-2">
+        <p className="mt-2 hyphens-manual break-words">
             {props.content}
-        </div>
+        </p>
     </div>
     </> 
     );
