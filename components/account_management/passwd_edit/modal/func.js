@@ -1,4 +1,4 @@
-export default function submitHandler() {
+export default function submitHandler(lang) {
 	document.querySelector("#warning_repeat")?.classList.remove("flex");
 	document.querySelector("#warning_repeat")?.classList.add("hidden");
 	document.querySelector("#warning_len")?.classList.remove("flex");

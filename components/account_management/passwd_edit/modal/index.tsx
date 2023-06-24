@@ -13,7 +13,7 @@ const PasswordEditForm = ({lang}:{lang:string}) => {
 				<h1 className="text-lg">{dict.manage.components.modals.passwd_edit.title}</h1>
 				<form
 					action={UpdatePasswordAction}
-					onSubmit={submitHandler}
+					onSubmit={()=>submitHandler(lang)}
 					className="flex flex-col items-center gap-4"
 				>
 					<div className="sm:grid sm:grid-cols-[max-content_auto] flex flex-col items-center text-right gap-2 w-full">
