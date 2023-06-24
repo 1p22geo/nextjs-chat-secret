@@ -7,11 +7,12 @@ import Link from "next/link";
 const PasswordEditComponent = (props: {
 	session: SessionObject;
 	user: UserObject;
+	lang: string;
 }) => {
 	return (
 		<>
 			<Link
-				href="/data_modals/password"
+				href={'/'+props.lang+"/data_modals/password"}
 				className="bg-[#F35627] text-base rounded-2xl text-white hover:bg-[#F9703E] p-2"
 			>
 				Change password

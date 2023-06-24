@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const PublicNicknameEditComponent = (props: {
+	lang: string;
 	session: SessionObject;
 	user: UserObject;
 }) => {
@@ -37,7 +38,7 @@ const PublicNicknameEditComponent = (props: {
 				</div>
 				<div>
 					<Link
-						href="/data_modals/nickname"
+						href={'/'+props.lang+"/data_modals/nickname"}
 						className="bg-[#F35627] text-base rounded-full text-white hover:bg-[#F9703E] p-2"
 					>
 						Change nickname

@@ -4,7 +4,7 @@ import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-const AccountManagementPage = async () => {
+const AccountManagementPage = async ({ params }: { params: { lang: string } }) => {
 	const cookie = cookies().get("skyChatSession");
 	if (!cookie) {
 		redirect("/");
@@ -48,14 +48,14 @@ const AccountManagementPage = async () => {
 					The name by which others recognize you
 				</h2>
 				<div className="w-fit m-8">
-					<PublicNicknameEditComponent session={json.session} user={json2.res} />
+					<PublicNicknameEditComponent lang={params.lang} session={json.session} user={json2.res} />
 				</div>
 				<h2 className="text-lg font-semibold mb-2">Password</h2>
 				<h2 className="text-sm font-base mb-2">
 					You should change your password regularily
 				</h2>
 				<div className="w-fit m-8">
-                    <PasswordEditComponent session={json.session} user={json2.res} />
+                    <PasswordEditComponent lang={params.lang} session={json.session} user={json2.res} />
                 </div>
 			</div>
 		</>

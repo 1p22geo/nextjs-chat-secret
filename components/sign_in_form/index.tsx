@@ -72,7 +72,7 @@ async function sendForm(e:FormEvent){
     document.querySelector("#creating")?.classList.add("hidden")
 
 }
-export default function SignInForm(){
+export default function SignInForm(props:{lang:string}){
     return(
         <form onSubmit={sendForm} className="p-8 bg-[#B2C8F7] max-w-[600px] rounded-3xl shadow-2xl mx-auto flex flex-col items-center gap-4">
                 <h1 className=" text-2xl font-semibold">Sign in to SkyChat</h1>
@@ -94,7 +94,7 @@ export default function SignInForm(){
                     <Dialog status="warn" icon="error" message="Something went wrong" id="warning_data" secondary="The data seemed good here, but the server had problems with it" />
                     <Dialog status="warn" icon="info" message="A user with this username already exists" secondary="Pick a different one or add a digit at the end or smth idk." id="user_conflict"/>
                     <Dialog status="success" icon="tick" message="Account created" id="created" secondary="You can now log in" >
-                        <Link href={'/login'} className="hover:underline font-bold text-[#07600E]">
+                        <Link href={'/'+props.lang+'/login'} className="hover:underline font-bold text-[#07600E]">
                             here
                         </Link>
                     </Dialog>

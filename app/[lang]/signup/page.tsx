@@ -1,10 +1,10 @@
 import SignInForm from "@/components/sign_in_form";
 
 
-const SignupPage = () => {
+const SignupPage = ({ params }: { params: { lang: string } }) => {
     return ( <>
         <div className="w-screen h-screen grid content-center background_gradient">
-            <SignInForm />
+            <SignInForm lang={params.lang} />
         </div>
     </> );
 }

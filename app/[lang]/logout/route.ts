@@ -1,7 +1,7 @@
 import { cookies, headers } from "next/headers";
-import {  NextResponse } from "next/server";
+import {  NextRequest, NextResponse } from "next/server";
 
-export function GET(){
+export function GET(request:NextRequest, { params }: { params: { lang: string } }){
     cookies().set({
         name:"skyChatSession",
         value: "",
@@ -9,7 +9,9 @@ export function GET(){
         maxAge:-1
     })
     const headersList = headers();
+
+    
     
     const domain = headersList.get('host');
-    return NextResponse.redirect(new URL(`http://${domain}/`))
+    return NextResponse.redirect(new URL(`http://${domain}/${params.lang}`))
 }

@@ -1,10 +1,11 @@
 import LoginForm from "@/components/login_form";
-import Modal from "../../../components/modal";
+import Modal from "@/components/modal";
 
-export default function LoginModal() {
+
+export default function LoginModal({params}:{params:{lang:string}}) {
     return(
         <Modal>
-            <LoginForm />
+            <LoginForm lang={params.lang} />
         </Modal>
     )
     /*

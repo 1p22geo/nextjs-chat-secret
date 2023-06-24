@@ -9,10 +9,13 @@ export const revalidate = false;
 const MainLayout = async (props: {
 	children: ReactNode;
 	navbar: ReactNode;
+	params:{
+		lang:string
+	}
 }) => {
 	const cookie = cookies().get("skyChatSession");
 	if (!cookie) {
-		redirect("/");
+		redirect("/"+props.params.lang);
 	}
 	const id = cookie.value;
 	const headersList = headers();
@@ -25,7 +28,7 @@ const MainLayout = async (props: {
 	const res = await fetch(url, { next: { revalidate: false } });
 	//console.log(res.status)
 	if (!res.ok) {
-		redirect("/");
+		redirect("/"+props.params.lang);
 	}
 	const json = await res.json();
 	//console.log(json.session.user)
@@ -41,7 +44,7 @@ const MainLayout = async (props: {
 					className="ml-2"
 				/>
 				<h1 className="self-end ml-4 mb-2 text-2xl font-bold">SkyChat v0.1</h1>
-				<UserIcon image="/user-blue.svg" username={json.session.user} />
+				<UserIcon image="/user-blue.svg" username={json.session.user} lang={props.params.lang} />
 			</header>
 				<div className="sm:grid sm:grid-cols-[300px_auto] w-screen flex flex-col min-h-screen background_gradient h-fit">
 					<div>{props.navbar}</div>

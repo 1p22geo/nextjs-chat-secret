@@ -3,7 +3,7 @@
 import { FormEvent } from "react";
 import Dialog from "../warning";
 
-async function sendForm(e:FormEvent){
+async function sendForm(e:FormEvent, lang:string){
     e.preventDefault()
     document.querySelector("#wait")?.classList.remove("flex")
     document.querySelector("#wait")?.classList.add("hidden")
@@ -48,13 +48,11 @@ async function sendForm(e:FormEvent){
         document.querySelector("#error")?.classList.remove("hidden")
         return
     }
-    // FIXME: this doesn't feel good.
-    // nah, it does now. gonna delete it in the next commit.
-    window.location.href = '/in'
+    window.location.href = "/"+lang+'/in'
 }
-export default function LoginForm(){
+export default function LoginForm({lang}:{lang:string}){
     return(
-        <form onSubmit={(e)=>{sendForm(e)}} className="w-fit p-8 mx-auto bg-[#B2C8F7] rounded-3xl flex flex-col items-center gap-4 shadow-2xl">
+        <form onSubmit={(e)=>{sendForm(e, lang)}} className="w-fit p-8 mx-auto bg-[#B2C8F7] rounded-3xl flex flex-col items-center gap-4 shadow-2xl">
                 <h1 className=" text-2xl font-semibold">Log in to SkyChat</h1>
                 <div className="grid grid-cols-[max-content_auto] text-right gap-2 w-full">
 

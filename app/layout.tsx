@@ -12,8 +12,7 @@ export const metadata = {
 
 
 export default async function RootLayout(props: {
-  children: React.ReactNode,
-  modal: React.ReactNode
+  children: React.ReactNode
 }) {
 
   // await checkCookie()
@@ -22,7 +21,6 @@ export default async function RootLayout(props: {
     <html lang="en">
       <body className={inter.className}>
         {props.children}
-        {props.modal}
         </body>
     </html>
   )

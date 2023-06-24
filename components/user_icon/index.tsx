@@ -15,7 +15,8 @@ function HideDropdown(){
 
 const UserIcon = (props:{
     image:string,
-    username:string
+    username:string,
+    lang:string
 }) => {
     
     return ( 
@@ -51,14 +52,14 @@ const UserIcon = (props:{
                 <h3 className="">Logged in as {props.username}</h3>
             </div>
             <div className="flex flex-nowrap flex-row p-4 items-center gap-4 border-b-2 border-black"> 
-                <Link href={'/in/'} className="cursor-pointer hover:underline">Messages</Link>
+                <Link href={'/'+props.lang+'/in/'} className="cursor-pointer hover:underline">Messages</Link>
             </div>
 
             <div className="flex flex-col items-start p-4 gap-2">
-                <Link href={'/in/manage'} className="cursor-pointer hover:underline">Manage account</Link>
-                <Link href={'/in/settings'} className="cursor-pointer hover:underline">Application settings</Link>
-                <Link href={'/in/log'} className="cursor-pointer hover:underline">Full account history</Link>
-                <div onClick={()=>{window.location.assign("/logout")}} className="mt-8 hover:underline cursor-pointer text-red-500">Log out</div>
+                <Link href={'/'+props.lang+'/in/manage'} className="cursor-pointer hover:underline">Manage account</Link>
+                <Link href={'/'+props.lang+'/in/settings'} className="cursor-pointer hover:underline">Application settings</Link>
+                <Link href={'/'+props.lang+'/in/log'} className="cursor-pointer hover:underline">Full account history</Link>
+                <div onClick={()=>{window.location.assign('/'+props.lang+"/logout")}} className="mt-8 hover:underline cursor-pointer text-red-500">Log out</div>
             </div>
         </div>
     </div>
