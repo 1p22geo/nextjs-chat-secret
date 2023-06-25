@@ -1,6 +1,3 @@
-import { cookies } from "next/dist/client/components/headers";
-import { redirect } from "next/navigation";
-import { headers } from "next/headers";
 import { ReactNode } from "react";
 import Image from "next/image";
 import UserIcon from "@/components/user_icon";

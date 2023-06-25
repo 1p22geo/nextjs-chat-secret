@@ -1,3 +1,4 @@
+import UserObject from "@/lib/types/user"
 import { redirect } from "next/navigation"
 
 export default async function checkUser(domain:string|null, session:string, user:string){
@@ -9,6 +10,6 @@ export default async function checkUser(domain:string|null, session:string, user
     if(!res.ok){
         redirect('/')
     }
-    const json = await res.json()
+    const json:{res:UserObject} = await res.json()
     return {url, res, json}
 }

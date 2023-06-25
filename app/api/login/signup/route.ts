@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
 import secrets from "@/lib/globals/secrets"
@@ -58,9 +58,9 @@ export async function POST(request:NextRequest){
             pname:json.uname,
             sha256:hash,
             salt:salt,
-            added: Date.now() , // unix timestamp in ms,
-            address:request.ip
-        })
+            type:"user", //regular user priviledges
+            added: Date.now() ,
+        }) // IPs were never a good idea
 
     }
     catch{

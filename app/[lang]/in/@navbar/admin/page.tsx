@@ -9,8 +9,6 @@ export default async function NavbarComponent({
 	params: { lang: string };
 }) {
 	const dict = translate(params.lang);
-    const { json ,id, domain } = await checkSessionCookie();
-    const {json:{res:user}} = await checkUser(domain, id, json.session.user)
 	return (
 		<>
 			<div className="p-8 flex flex-col items-center fixed left-0 top-16 flex-nowrap gap-4">
@@ -29,41 +27,21 @@ export default async function NavbarComponent({
 					<div className="w-10 h-1 bg-black"></div>
 				</label>
 				<div className="max-sm:peer-checked:hidden flex flex-col items-center gap-4 max-sm:bg-[#BED0F7] p-4 max-sm:rounded-2xl max-sm:shadow-2xl">
-					{user.type==='root'?<Link
-						href={"/" + params.lang + "/in/admin"}
+					<Link
+						href={"/" + params.lang + "/in/"}
 						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
 					>
-						{dict.navbar.admin.title}
-					</Link>:<></>}
+						{dict.navbar.admin.back}
+					</Link>
 					<h3 className="caps font-semibold  text-slate-500 mt-4 max-sm:peer-checked:hidden">
-						{dict.navbar.titles[0]}
+						{dict.navbar.admin.title}
 					</h3>
+					
 					<Link
-						href={"/" + params.lang + "/in/public"}
+						href={"/" + params.lang + "/in/admin/users"}
 						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
 					>
-						{dict.navbar.links.channels[0]}
-					</Link>
-					<Link
-						href={"/" + params.lang + "/in/news"}
-						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
-					>
-						{dict.navbar.links.channels[1]}
-					</Link>
-					<Link
-						href={"/" + params.lang + "/in/dev"}
-						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
-					>
-						{dict.navbar.links.channels[2]}
-					</Link>
-					<h3 className="caps font-semibold text-slate-500 max-sm:peer-checked:hidden mt-4">
-						{dict.navbar.titles[1]}
-					</h3>
-					<Link
-						href={"/" + params.lang + "/in/direct"}
-						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
-					>
-						{dict.navbar.links.direct}
+						{dict.navbar.admin.actions[0]}
 					</Link>
 				</div>
 			</div>

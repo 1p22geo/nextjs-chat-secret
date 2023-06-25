@@ -14,7 +14,6 @@ export async function POST(request:NextRequest){
 	try {
 		const json = await request.json()
 		const session = json.session
-		//console.logg(session)
 		if (session == null) {
 			throw new Error("Session ID required");
 		}
@@ -22,16 +21,10 @@ export async function POST(request:NextRequest){
 		const client = new MongoClient(uri, options);
 		try {
 			await client.connect();
-			// console.log(`${req_id} : database connected`)
-			// console.timeLog(req_id)
 			const db = client.db(db_name);
 			const collection = db.collection("sessions");
-			// console.log(`${req_id} : Collection found, finding session`)
-			// console.timeLog(req_id)
 			const res = await collection.findOne({ _id: new ObjectId(session) });
 			if (res == null) {
-				// console.log(`${req_id} : user session NOT found`)
-				// console.timeEnd(req_id)
 				await client.close();
 				return NextResponse.json({}, { status: 401 });
 			}
@@ -39,9 +32,6 @@ export async function POST(request:NextRequest){
 			
 			const collection2 = db.collection('users');
 			const res2 = await collection2.findOne({user:res.user})
-			// console.log(`${req_id} : Document retrieved`)
-			// console.timeLog(req_id)
-			// console.log(res);
 			if(!res2){
 				await client.close()
 				return NextResponse.json({}, {status:404, statusText:"User not found"})
@@ -55,7 +45,6 @@ export async function POST(request:NextRequest){
 					added:Date.now(),
 					content:json.content,
 					feed:"public",
-					address:request.ip
 				})
 				await client.close()
 				

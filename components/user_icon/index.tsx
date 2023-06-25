@@ -61,7 +61,7 @@ const UserIcon = (props:{
                 <Link href={'/'+props.lang+'/in/manage'} className="cursor-pointer hover:underline">{dict.dropdown_menu.manage}</Link>
                 <Link href={'/'+props.lang+'/in/settings'} className="cursor-pointer hover:underline">{dict.dropdown_menu.settings}</Link>
                 <Link href={'/'+props.lang+'/in/log'} className="cursor-pointer hover:underline">{dict.dropdown_menu.log}</Link>
-                <div onClick={()=>{window.location.assign('/'+props.lang+"/logout")}} className="mt-8 hover:underline cursor-pointer text-red-500">{dict.dropdown_menu.logout}</div>
+                <a href={'/'+props.lang+"/logout"} onClick={()=>{window.location.assign('/'+props.lang+"/logout")}} className="mt-8 hover:underline cursor-pointer text-red-500">{dict.dropdown_menu.logout}</a>
             </div>
         </div>
     </div>

@@ -10,5 +10,12 @@ export default {
             "Developers' feed"
         ],
         direct:"All messages"
+    },
+    admin:{
+        title:"Administrative actions",
+        back:"Back",
+        actions: [
+            "Manage users"
+        ]
     }
 }

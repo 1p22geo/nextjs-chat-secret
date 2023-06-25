@@ -57,7 +57,6 @@ export async function POST(request:NextRequest){
             const res = await collection2.insertOne({
                 user:user.user,
                 added:Date.now() ,
-                address:request.ip
             })
             const session = (res.insertedId.toJSON())
             

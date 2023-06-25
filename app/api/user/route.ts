@@ -44,7 +44,8 @@ export async function GET(request:Request){
             return NextResponse.json({res:{
                 user:res.user,
                 pname:res.pname,
-                added:res.added
+                added:res.added,
+                type:res.type
             }}, {status:200})
         }
     }

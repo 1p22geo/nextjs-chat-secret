@@ -1,3 +1,4 @@
+import SessionObject from "@/lib/types/session";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -20,6 +21,8 @@ export default async function checkSessionCookie(){
     if(!res.ok){
         redirect('/')
     }
-    const json = await res.json()
+    const json:{
+        session:SessionObject
+    } = await res.json()
     return {json:json, domain:domain, res:res, id:id}
 }
