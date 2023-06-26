@@ -10,10 +10,8 @@ const AccountManagementPage = async ({
 	params: { lang: string };
 }) => {
 	const { json, id, domain } = await checkSessionCookie();
-	// console.log(json)
 
 	const { json: json2 } = await checkUser(domain, id, json.session.user);
-	// console.log(json2)
 
 	const dict = translate(params.lang);
 	return (

@@ -12,7 +12,7 @@ export default {
 		actions: ["Delete"],
 	},
 	deleting: "Deleting user...",
-	wait: "Hold on...",
+	wait: shared.wait,
 	modals: {
 		add: {
 			title: "Add a new user",
