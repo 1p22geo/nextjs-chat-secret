@@ -1,18 +1,15 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import Dialog from "@/components/warning";
 import GeneralMessageFeedComponent from "@/components/message_feed";
 import { translate } from "@/lang";
+import checkSessionCookie from "@/lib/checks/cookie";
+import checkUser from "@/lib/checks/user";
 
-const PublicMessagePage = async (props: { params: { lang: string } }) => {
+const NewsMessagePage = async (props: { params: { lang: string } }) => {
 	const dict = translate(props.params.lang);
 
-	const cookie = cookies().get("skyChatSession");
-	if (!cookie) {
-		redirect("/");
-	}
+	const {id, domain, json:{session}} = await  checkSessionCookie()
 
-	const id = cookie.value;
+	const {json:{res:user}} = await checkUser(domain, id, session.user)
 
 	return (
 		<>
@@ -33,12 +30,12 @@ const PublicMessagePage = async (props: { params: { lang: string } }) => {
 			<div className="p-8"></div>
 			<GeneralMessageFeedComponent
 				lang={props.params.lang}
-				type="public"
-				messages={true}
+				type="dev"
+				messages={user.type=='root'}
 				session={id}
 			/>
 		</>
 	);
 };
 
-export default PublicMessagePage;
+export default NewsMessagePage;

@@ -1,18 +1,19 @@
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-import secrets from "@/lib/globals/secrets";
-const uri = secrets.database.DB_CONN_STRING;
+import secrets from "@/lib/globals/secrets"
+const uri = secrets.database.DB_CONN_STRING
 
 import globals from "@/lib/globals";
 
-const db_name = globals.database.DB_NAME;
-const options = globals.database.DB_CLIENT_OPTIONS;
+const db_name = globals.database.DB_NAME
+const options = globals.database.DB_CLIENT_OPTIONS
+
 
 export async function GET(request: NextRequest) {
 	// const genRanHex = (size: number) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-
-	// const req_id = genRanHex(6);
+	
+    // const req_id = genRanHex(6);
 	// console.log(`${req_id} : request recieved`)
 	// console.time(req_id)
 	try {
@@ -22,16 +23,17 @@ export async function GET(request: NextRequest) {
 		if (session == null) {
 			throw new Error("Session ID required");
 		}
-		const num = searchParams.get("n");
+		const num = searchParams.get("n")
 		let messagesCount;
-		try {
-			if (!num) {
-				throw Error();
+		try{
+			if(!num){
+				throw Error()
 			}
-			messagesCount = parseInt(num);
-		} catch {
-			messagesCount = 3;
+			messagesCount = parseInt(num)
 		}
+		catch{
+			messagesCount = 3
+		}		
 
 		const client = new MongoClient(uri, options);
 		try {
@@ -56,11 +58,11 @@ export async function GET(request: NextRequest) {
 				// console.timeLog(req_id)
 				const collection2 = db.collection("posts");
 				const agg = [
-					{
-						$match: {
-							feed: "public",
-						},
-					},
+                    {
+                        $match:{
+                            feed:'news'
+                        }
+                    },
 					{
 						$sort: {
 							added: -1,
@@ -82,7 +84,7 @@ export async function GET(request: NextRequest) {
 				const response = NextResponse.json({ res: result }, { status: 200 });
 				// console.log(`${req_id} : returning response`)
 				// console.timeEnd(req_id)
-				return response;
+				return response
 			}
 		} catch {
 			await client.close();

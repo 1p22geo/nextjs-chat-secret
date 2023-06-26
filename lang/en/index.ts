@@ -7,6 +7,7 @@ import message_bar from "./components/message_bar";
 import manage from "./manage";
 import settings from "./settings";
 import admin from "./admin";
+import misc from "./misc";
 export default {
 	index: index,
 	login: login,
@@ -16,5 +17,6 @@ export default {
 	message_bar: message_bar,
 	manage: manage,
 	settings: settings,
-	admin:admin
+	admin:admin,
+	...misc
 };
