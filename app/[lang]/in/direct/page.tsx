@@ -8,7 +8,7 @@ const DirectMessagePage = ({
     const dict = translate(lang)
 	return (
 		<>
-			<h1>{dict.direct_messages_work_in_progress.title}</h1>
+			<h1 className="text-lg font-semibold">{dict.direct_messages_work_in_progress.title}</h1>
 			<h1>{dict.direct_messages_work_in_progress.subtitle}</h1>
 		</>
 	);
