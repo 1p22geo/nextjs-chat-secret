@@ -10,8 +10,8 @@ const proxy = httpProxy.createProxyServer({
 });
 
 const options = {
-  cert: fs.readFileSync('./ssl/intermediate.crt'),
-  key: fs.readFileSync('./ssl/intermediate.key'),
+  cert: fs.readFileSync('./ssl/server.crt'),
+  key: fs.readFileSync('./ssl/server.key'),
   ca: [
     fs.readFileSync('./ssl/root.crt')
   ]
