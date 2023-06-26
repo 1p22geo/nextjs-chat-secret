@@ -6,7 +6,7 @@ export default {
 				Your unique identifier. It cannot be changed and has to be unique among
 				all users.
 				<br />
-				It can be seen as a small grey text under your messages.
+				It can be seen as a small grey text over your messages.
 			</>
 		),
 	},
