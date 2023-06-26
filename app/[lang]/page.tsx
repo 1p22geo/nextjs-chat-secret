@@ -11,7 +11,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
 		<>
 			<LangSelect value={params.lang} />
 			<div className="background_gradient px-8 flex min-h-screen flex-col items-center text-center pb-24">
-				<h1 className="md:text-6xl sm:text-5xl text-4xl mb-6 mt-24 font-semibold">
+				<h1 className="md:text-6xl max-lg:mt-48 sm:text-5xl text-4xl mb-6 mt-24 font-semibold">
 					{dict.index.title}
 				</h1>
 				<h2 className="text-2xl font-extralight">{dict.index.subtitle}</h2>

@@ -12,14 +12,15 @@ children will be placed inside the paragraph, after the secondary.
 id - the plain HTML identifier that will be assigned to the message
 visible - if true, the message will start visible, otherwise it will start will "display: none;"
 */
-export default function Dialog({status,message,secondary,icon,id,visible, children}:{
+export default function Dialog({status,message,secondary,icon,id,visible, children, absolute}:{
     status:string,
     message:string,
     secondary?:string,
     icon?:string
     id?:string,
     visible?:boolean,
-    children?:ReactNode
+    children?:ReactNode,
+    absolute?:boolean
 }){
     let svg;
     let showDialog = false;
@@ -44,7 +45,7 @@ export default function Dialog({status,message,secondary,icon,id,visible, childr
                     break;
             }
             return( <>
-            <div className={`w-full items-center col-span-1 col-start-2 bg-[#FF9B9B] border-l-4  border-[#CF1124] ${showDialog?"flex":"hidden"} p-2`} id={id}>
+            <div className={`w-fit items-center col-span-1 col-start-2 bg-[#FF9B9B] border-l-4  border-[#CF1124] ${showDialog?"flex":"hidden"} ${absolute?"fixed top-24 right-8":""} p-2`} id={id}>
                 {svg}
                 <h3 className=" text-[#E12D39] font-bold text-md ">
                     {message}
@@ -71,7 +72,7 @@ export default function Dialog({status,message,secondary,icon,id,visible, childr
                     break;
             }
             return( <>
-            <div className={`w-full items-center col-span-1 col-start-2 bg-[#FADB5F] border-l-4  border-[#CB6E17] ${showDialog?"flex":"hidden"} p-2`} id={id}>
+            <div className={`w-fit items-center col-span-1 col-start-2 bg-[#FADB5F] border-l-4  border-[#CB6E17] ${showDialog?"flex":"hidden"} ${absolute?"fixed top-24 right-8":""} p-2`} id={id}>
                 {svg}
                 <h3 className=" text-[#CB6E17] font-bold text-md ">
                     {message}
@@ -98,7 +99,7 @@ export default function Dialog({status,message,secondary,icon,id,visible, childr
                     break;
             }
             return( <>
-            <div className={`w-full items-center col-span-1 col-start-2 bg-[#98AEEB] border-l-4  border-[#35469C] ${showDialog?"flex":"hidden"} p-2`} id={id}>
+            <div className={`w-fit items-center col-span-1 col-start-2 bg-[#98AEEB] border-l-4  border-[#35469C] ${showDialog?"flex":"hidden"} ${absolute?"fixed top-24 right-8":""} p-2`} id={id}>
                 {svg}
                 <h3 className=" text-[#35469C] font-bold text-md ">
                     {message}
@@ -125,7 +126,7 @@ export default function Dialog({status,message,secondary,icon,id,visible, childr
                     break;
             }
             return( <>
-            <div className={`w-full items-center col-span-1 col-start-2 bg-[#91E697] border-l-4  border-[#0E7817] ${showDialog?"flex":"hidden"} p-2`} id={id}>
+            <div className={`w-fit items-center col-span-1 col-start-2 bg-[#91E697] border-l-4  border-[#0E7817] ${showDialog?"flex":"hidden"} ${absolute?"fixed top-24 right-8":""} p-2`} id={id}>
                 {svg}
                 <h3 className=" text-[#0E7817] font-bold text-md ">
                     {message}
@@ -136,7 +137,7 @@ export default function Dialog({status,message,secondary,icon,id,visible, childr
             </>)
         case "loading":
             return( <>
-                <div className={`w-full items-center col-span-1 col-start-2 bg-[#91E697] border-l-4  border-[#0E7817] ${showDialog?"flex":"hidden"} p-2`} id={id}>
+                <div className={`w-fit items-center col-span-1 col-start-2 bg-[#91E697] border-l-4  border-[#0E7817] ${showDialog?"flex":"hidden"} ${absolute?"fixed top-24 right-8":""} p-2`} id={id}>
                 <div className='w-8 h-8 bg-emerald-400 rounded-full pt-2 mr-4 animate-spin'>
                     <div className=' w-4 h-4 bg-[#91E697] mx-auto rounded-full'></div>
                     <div className='h-2 w-[4px] bg-emerald-100 translate-x-[14px]'></div>

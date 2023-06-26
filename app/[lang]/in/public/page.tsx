@@ -22,11 +22,13 @@ const PublicMessagePage = async (props: { params: { lang: string } }) => {
 						status="loading"
 						message={dict.message_bar.sending}
 						id="sending"
+						absolute
 					></Dialog>
 					<Dialog
 						status="error"
 						message={dict.message_bar.failed}
 						id="sendingfailed"
+						absolute
 					></Dialog>
 				</div>
 			</div>
