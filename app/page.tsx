@@ -1,6 +1,11 @@
 "use client"
+
+import { useEffect } from "react"
+
 export default async function Home() {
   "use client"
-    window.location.pathname = '/en'
+      useEffect(()=>{
+        window.location.pathname = '/en'
+      })
     return <></>
 }
