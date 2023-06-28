@@ -34,8 +34,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
-#secrets and API keys
-lib/globals/secrets
-#SSL private key
-ssl/*.key
+ssl/root.key
