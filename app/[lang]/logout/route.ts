@@ -8,6 +8,5 @@ export function GET(request:NextRequest, { params }: { params: { lang: string } 
         path:"/",
         maxAge:-1
     })
-    const host = headers().get('host')
-    return NextResponse.redirect(`https://${host}/${params.lang}`)
+    return NextResponse.redirect(`https://192.168.50.156/${params.lang}`) // REPLACE THIS IN PRODUCTION
 }

@@ -13,6 +13,7 @@ const db_name = globals.database.DB_NAME
 const options = globals.database.DB_CLIENT_OPTIONS
 
 export async function POST(request:NextRequest){
+    console.log("Recieved request")
     let json;
     try{
         json = await request.json()
@@ -23,6 +24,7 @@ export async function POST(request:NextRequest){
     ////console.log(json)
     const client = new MongoClient(uri, options);
     await client.connect();
+    console.log("Connected to database")
     try{
         const db = client.db(db_name)
         const collection = db.collection('users')
