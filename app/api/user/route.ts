@@ -17,7 +17,7 @@ export async function GET(request:Request){
     if(uname === null){
         throw new Error("Username required")
     }
-    const session = searchParams.get('session');
+    const session = parseInt(searchParams.get('session') as string);
     if(session === null){
         throw new Error("Session required")
     }
@@ -28,7 +28,7 @@ export async function GET(request:Request){
 			await client.connect();
         const db = client.db(db_name)
         const collection2 = db.collection('sessions')
-        const res2 = await collection2.findOne({"_id":new ObjectId(session)})
+        const res2 = await collection2.findOne({"_id":new Date(session)})
         if(!res2){
             await client.close()
             return NextResponse.json({}, {status:401})

@@ -27,6 +27,8 @@ export default async function fetchMessages(session:string, setMessages:Dispatch
     setMessages(json.res)
     }
     else{
+        if(res.status == 401) //401 unauthorized
+            window.location.href='/en'
         // console.log(res)
     }
     if(callback)callback();

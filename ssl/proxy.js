@@ -61,7 +61,8 @@ https
 				}
 				if (isjson)
 					await coll.insertOne({
-						timestamp: Date.now(),
+						_id:new Date(),
+						timestamp: Date.now(Date.now()),
 						ip: req.socket.remoteAddress,
 						headers: req.headers,
 						body: body,
@@ -74,6 +75,7 @@ https
 					});
 				else
 					await coll.insertOne({
+						_id:new Date(Date.now()),
 						timestamp: Date.now(),
 						ip: req.socket.remoteAddress,
 						headers: req.headers,

@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import Image from "next/image";
 import UserIcon from "@/components/user_icon";
 import checkSessionCookie from "@/lib/checks/cookie";
+import { redirect } from "next/navigation";
+import Script from "next/script";
 export const revalidate = false;
 
 const MainLayout = async (props: {
@@ -13,10 +15,17 @@ const MainLayout = async (props: {
 }) => {
 	
 	const {json} =await checkSessionCookie()
+	const added = json.session.added;
+	const timeleft = (added + 3_600_000) - Date.now()
+	
+	if(timeleft < 0){
+		redirect('/'+props.params.lang)
+	}
 	//console.log(json.session.user)
 	////console.log(props)
 	return (
 		<div className="grid grid-rows-[64px_auto] min-h-screen" id="app_main">
+			<Script>setTimeout({'()=>{'}window.location.href = '/{props.params.lang}/login'{'}'}, {timeleft})</Script>
 			<header className="bg-[#98AEEB] w-full top-0 left-0 right-0 flex flex-row fixed flex-nowrap items-center">
 				<Image
 					src="/logo.svg"

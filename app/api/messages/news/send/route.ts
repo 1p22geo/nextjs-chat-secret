@@ -12,7 +12,7 @@ const options = globals.database.DB_CLIENT_OPTIONS;
 export async function POST(request: NextRequest) {
 	try {
 		const json = await request.json();
-		const session = json.session;
+		const session = parseInt(json.session as string);
 		if (session == null) {
 			throw new Error("Session ID required");
 		}
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 			await client.connect();
 			const db = client.db(db_name);
 			const collection = db.collection("sessions");
-			const res = await collection.findOne({ _id: new ObjectId(session) });
+			const res = await collection.findOne({ _id: new Date(session) });
 			if (res == null) {
 				await client.close();
 				return NextResponse.json({}, { status: 401 });

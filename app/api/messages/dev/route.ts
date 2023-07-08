@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 	// console.time(req_id)
 	try {
 		const { searchParams } = new URL(request.url);
-		const session = searchParams.get("session");
+		const session = parseInt(searchParams.get("session") as string);
 		//console.logg(session)
 		if (session == null) {
 			throw new Error("Session ID required");
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
 			const collection = db.collection("sessions");
 			// console.log(`${req_id} : Collection found, finding session`)
 			// console.timeLog(req_id)
-			const res = await collection.findOne({ _id: new ObjectId(session) });
+			const res = await collection.findOne({ _id: new Date(session) });
 			// console.log(`${req_id} : Document retrieved`)
 			// console.timeLog(req_id)
 			// console.log(res);

@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 	try {
 		const db = client.db(db_name);
 		const sessions = db.collection("sessions");
-		const session = await sessions.findOne({ _id: new ObjectId(json.session) });
+		const session = await sessions.findOne({ _id: new Date(parseInt(json.session)) });
 		if (!session) {
 			// no sessions?
 			return NextResponse.json({}, { status: 401 }); // 401 - no valid authentication method, reauthenticate

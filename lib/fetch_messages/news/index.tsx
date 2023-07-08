@@ -27,6 +27,8 @@ export default async function fetchNews(session:string, setMessages:Dispatch<Set
     setMessages(json.res)
     }
     else{
+        if(res.status == 401) //401 unauthorized
+            window.location.href='/en'
         // console.log(res)
     }
     if(callback)callback();

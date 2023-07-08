@@ -1,5 +1,5 @@
 export const revalidate = false
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 import { cookies } from "next/dist/client/components/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
@@ -56,17 +56,19 @@ export async function POST(request:NextRequest){
         }
         else{
             const collection2 = db.collection('sessions');
+            let id = new Date(Date.now())
             const res = await collection2.insertOne({
+                _id: id as any as ObjectId,
                 user:user.user,
                 added:Date.now() ,
             })
-            const session = (res.insertedId.toJSON())
             
-            const response = NextResponse.json({session:session}, {status:201});
+            
+            const response = NextResponse.json({session:id.getTime().toString()}, {status:201});
 
             cookies().set({
                 name:"skyChatSession",
-                value: session,
+                value: id.getTime().toString(),
                 path:"/",
                 httpOnly:true,
                 secure:false,
