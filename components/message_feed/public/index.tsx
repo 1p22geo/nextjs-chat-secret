@@ -1,52 +1,22 @@
 "use client";
 
 import Message from "@/components/message";
-import Dialog from "@/components/warning";
 import { translate } from "@/lang";
-import fetchMessages from "@/lib/fetch_messages";
 import MessageObject from "@/lib/types/message";
-import { MutableRefObject, useEffect, useState } from "react";
 
 export default function PublicMessageFeed(props: {
 	session: string;
-	callbackRef: MutableRefObject<() => void>;
-	lang:string
+	lang:string,
+	messages?:MessageObject[]
 }) {
 	const dict = translate(props.lang)
-	const [messages, setMessages] = useState([]);
-	const [loading, setLoading] = useState(true);
-	useEffect(() => {
-		fetchMessages(props.session, setMessages);
-	}, [props.session]);
-	useEffect(() => {
-		const i = setInterval(() => {
-			fetchMessages(props.session, setMessages, () => {
-				setLoading(false);
-			});
-		}, 700);
-		return () => {
-			clearInterval(i);
-		};
-	}, [props.session]);
-	useEffect(() => {
-		props.callbackRef.current = () => {
-			setTimeout(() => {
-				fetchMessages(props.session, setMessages);
-			}, 0);
-		};
-	}, [props.session]);
-	if (loading) {
-		return (
-			<div className="w-full flex flex-col items-center">
-				<div className="w-fit">
-					<Dialog status="loading" message={dict.message_bar.loading} visible />
-				</div>
-			</div>
-		);
-	}
+	console.log(props.messages)
+	const messages = props.messages?props.messages:[]
+
 	return (
 		<div className="flex flex-col px-4 items-center sm:items-start gap-8 mb-24">
 			{messages.map((message: MessageObject, index) => {
+				console.log(message)
 				return (
 					<Message
 						img="/user-blue.png"

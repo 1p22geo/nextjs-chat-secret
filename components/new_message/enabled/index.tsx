@@ -3,13 +3,13 @@
 import { translate } from "@/lang";
 import { FormEvent, MutableRefObject } from "react";
 
-const MessageSendForm = (props:{callbackRef:MutableRefObject<()=>void>, onSubmit:(e:FormEvent<HTMLFormElement>, session:string, callbackRef:MutableRefObject<()=>void>)=>Promise<boolean>, session:string, lang:string}) => {
+const MessageSendForm = (props:{ onSubmit:(e:FormEvent<HTMLFormElement>)=>void, session:string, lang:string}) => {
     const dict = translate(props.lang)
     
     return ( 
     <>
     <div className="fixed right-0 bottom-0 w-full z-10 max-w-[600px] p-8 ">
-        <form onSubmit={(e:FormEvent<HTMLFormElement>)=>props.onSubmit(e, props.session, props.callbackRef)} className="flex items-center">
+        <form onSubmit={props.onSubmit} className="flex items-center">
         <input id="msg" name="msg" autoFocus={true} type="text" className={`rounded-full p-3 text-xl w-full shadow-2xl pr-28 flex accent-[#F35627] caret-[#F35627]`} placeholder={dict.message_bar.enabled}></input>
         <label htmlFor="submitmsg" className={`p-2 bg-[#F35627] cursor-pointer w-24 justify-evenly -ml-[102px] rounded-full flex items-center font-semibold text-white`}>
             <h3>{dict.message_bar.send}</h3>

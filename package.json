@@ -7,21 +7,29 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"proxy": "node ./ssl/proxy.js"
+		"proxy": "node ./ssl/proxy.js",
+		"sockets": "node ./websocket/server.js",
+		"socket-proxy": "node ./ssl/sockets.js"
 	},
 	"dependencies": {
 		"@types/node": "20.3.1",
 		"@types/react": "18.2.13",
 		"@types/react-dom": "18.2.6",
 		"autoprefixer": "10.4.14",
+		"bufferutil": "^4.0.7",
 		"client-only": "^0.0.1",
+		"express": "^4.18.2",
 		"http-proxy": "^1.18.1",
 		"mongodb": "^5.6.0",
 		"next": "13.4.7",
 		"postcss": "8.4.24",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
+		"socket.io": "^4.7.1",
+		"socket.io-client": "^4.7.1",
+		"supports-color": "^9.4.0",
 		"tailwindcss": "3.3.2",
-		"typescript": "5.1.3"
+		"typescript": "5.1.3",
+		"utf-8-validate": "^6.0.3"
 	}
 }

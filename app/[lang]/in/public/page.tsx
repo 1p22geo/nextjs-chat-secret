@@ -3,16 +3,17 @@ import { redirect } from "next/navigation";
 import Dialog from "@/components/warning";
 import GeneralMessageFeedComponent from "@/components/message_feed";
 import { translate } from "@/lang";
+import checkSessionCookie from "@/lib/checks/cookie";
 
 const PublicMessagePage = async (props: { params: { lang: string } }) => {
 	const dict = translate(props.params.lang);
 
-	const cookie = cookies().get("skyChatSession");
-	if (!cookie) {
-		redirect("/");
+	const {domain, id} = await checkSessionCookie()
+	const res = await fetch(`http://${domain}/api/messages?session=${id}&n=5`)
+	let messages = []
+	if(res.ok){
+		messages = (await res.json()).res
 	}
-
-	const id = cookie.value;
 
 	return (
 		<>
@@ -38,6 +39,7 @@ const PublicMessagePage = async (props: { params: { lang: string } }) => {
 				type="public"
 				messages={true}
 				session={id}
+				initMsg={messages}
 			/>
 		</>
 	);

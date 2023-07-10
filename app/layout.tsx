@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import './globals.css'
 import { Inter } from 'next/font/google'
 export const revalidate = false
@@ -21,6 +22,7 @@ export default async function RootLayout(props: {
     <html lang="en">
       <body className={inter.className}>
         {props.children}
+        <Script src="https://cdn.socket.io/4.5.4/socket.io.min.js" />
         </body>
     </html>
   )
