@@ -49,7 +49,7 @@ export default async function NavbarComponent({
 						{dict.navbar.links.channels[1]}
 					</span>
 					<Link
-						href={"/" + params.lang + "/in/dev"}
+						href={"/" + params.lang + "/in/public"}
 						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
 					>
 						{dict.navbar.links.channels[2]}
