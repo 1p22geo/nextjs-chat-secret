@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
 				const agg = [
 					{
 						$match: {
-							feed: "public",
+							feed: searchParams.get('feed')?searchParams.get('feed'):'ch-01',
 						},
 					},
 					{

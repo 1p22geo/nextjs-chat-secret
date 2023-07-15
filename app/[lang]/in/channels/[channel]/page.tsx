@@ -5,15 +5,12 @@ import GeneralMessageFeedComponent from "@/components/message_feed";
 import { translate } from "@/lang";
 import checkSessionCookie from "@/lib/checks/cookie";
 
-const PublicMessagePage = async (props: { params: { lang: string } }) => {
+const PublicMessagePage = async (props: {
+	params: { lang: string, channel:string };
+}) => {
 	const dict = translate(props.params.lang);
 
-	const {domain, id} = await checkSessionCookie()
-	const res = await fetch(`http://${domain}/api/messages?session=${id}&n=5`)
-	let messages = []
-	if(res.ok){
-		messages = (await res.json()).res
-	}
+	const { id } = await checkSessionCookie();
 
 	return (
 		<>
@@ -33,13 +30,11 @@ const PublicMessagePage = async (props: { params: { lang: string } }) => {
 					></Dialog>
 				</div>
 			</div>
-			<div className="p-8"></div>
 			<GeneralMessageFeedComponent
 				lang={props.params.lang}
-				type="public"
+				type={'ch-'+props.params.channel}
 				messages={true}
 				session={id}
-				initMsg={messages}
 			/>
 		</>
 	);

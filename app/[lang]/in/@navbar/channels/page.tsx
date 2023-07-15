@@ -39,21 +39,23 @@ export default async function NavbarComponent({
 						{dict.navbar.titles[0]}
 					</h3>
 					<Link
-						href={"/" + params.lang + "/in/public"}
-                         className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600">
+						href={"/" + params.lang + "/in/channels/01"}
+						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
+					>
 						{dict.navbar.links.channels[0]}
 					</Link>
 					<Link
-						href={"/" + params.lang + "/in/public"}
+						href={"/" + params.lang + "/in/channels/02"}
 						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
 					>
 						{dict.navbar.links.channels[1]}
 					</Link>
-					<span
-						className="max-sm:peer-checked:hidden cursor-default font-semibold text-slate-900"
+					<Link
+						href={"/" + params.lang + "/in/channels/03"}
+						className="hover:underline max-sm:peer-checked:hidden cursor-pointer font-semibold text-slate-600"
 					>
 						{dict.navbar.links.channels[2]}
-					</span>
+					</Link>
 					<h3 className="caps font-semibold text-slate-500 max-sm:peer-checked:hidden mt-4">
 						{dict.navbar.titles[1]}
 					</h3>

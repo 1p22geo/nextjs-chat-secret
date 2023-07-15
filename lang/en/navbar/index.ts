@@ -5,9 +5,9 @@ export default {
     ],
     links:{
         channels:[
-            "Public messages",
-            "News feed",
-            "Developers' feed"
+            "Channel 1",
+            "Channel 2",
+            "Channel 3"
         ],
         direct:"All messages"
     },

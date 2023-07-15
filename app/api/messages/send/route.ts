@@ -44,7 +44,7 @@ export async function POST(request:NextRequest){
 					name:res2.pname,
 					added:Date.now(),
 					content:json.content,
-					feed:"public",
+					feed:"ch-01",
 				})
 				await client.close()
 				

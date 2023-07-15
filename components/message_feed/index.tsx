@@ -6,25 +6,44 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import MessageObject from "@/lib/types/message";
 import { Socket, io } from "socket.io-client";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
+import Dialog from "@/components/warning";
 
 const GeneralMessageFeedComponent = ({
 	type,
 	session,
 	lang,
 	messages,
-	initMsg,
 }: {
 	type: string;
 	session: string;
 	lang: string;
 	messages: boolean;
-	initMsg?: MessageObject[];
 }) => {
-	const [messageList, setMessages] = useState(initMsg ? initMsg : []);
+	const [areMessages, setAreMessages]  = useState(false)
+	const [messageList, setMessages] = useState<MessageObject[]>([]);
 	const sendCallback = useRef<(message: string) => void>(
 		(message: string) => {}
 	);
 	const socketRef = useRef<Socket<DefaultEventsMap, DefaultEventsMap>>();
+
+	useEffect(() => {
+		let messagesnum = 4;
+		try {
+			const item = localStorage.getItem("skyChatConfig.MaxMessageNum");
+			messagesnum = parseInt(item?.toString() as string);
+		} catch {}
+
+		fetch(
+			`/api/messages?session=${session}&n=${messagesnum.toString()}&feed=${encodeURIComponent(
+				type
+			)}`
+		).then((res) => {
+			res.json().then((json) => {
+				setMessages(json.res);
+				setAreMessages(true)
+			});
+		});
+	}, [type, session]);
 
 	useEffect(() => {
 		socketRef.current = io("wss://192.168.50.156:4433", {
@@ -33,38 +52,93 @@ const GeneralMessageFeedComponent = ({
 			reconnectionAttempts: 5,
 			reconnectionDelay: 700,
 		});
+		console.log(type);
 
+		switch (type) {
+			case "ch-01":
+				socketRef.current.on("public_message", (msg) => {
+					console.log("Received message:", msg);
+					setMessages((prevMessages) => [msg, ...prevMessages]);
+				});
 
-		socketRef.current.on("public_message", (msg) => {
-			console.log("Received message:", msg);
-			setMessages((prevMessages) => [msg, ...prevMessages]);
-		});
+				socketRef.current.on("error", (error) => {
+					console.error("WebSocket error:", error);
+				});
 
-		socketRef.current.on("error", (error) => {
-			console.error("WebSocket error:", error);
-		});
+				sendCallback.current = (message: string) => {
+					console.log("Emitting message:", message);
+					if (!socketRef.current) return;
 
-		sendCallback.current = (message: string) => {
-			console.log("Emitting message:", message);
-			if (!socketRef.current) return;
+					socketRef.current.emit("submit_public_message", {
+						session: session,
+						message: message,
+					});
 
-			socketRef.current.emit("submit_public_message", {
-				session: session,
-				message: message,
-			});
+					(document.querySelector("#msg") as HTMLInputElement).value = "";
+				};
+				return () => {
+					socketRef.current?.off("public_message");
+					socketRef.current?.off("error");
+				};
+			case "ch-02":
+				socketRef.current.on("public_message2", (msg) => {
+					console.log("Received message:", msg);
+					setMessages((prevMessages) => [msg, ...prevMessages]);
+				});
 
-			(document.querySelector("#msg") as HTMLInputElement).value = "";
-		};
+				socketRef.current.on("error", (error) => {
+					console.error("WebSocket error:", error);
+				});
 
-		return () => {
-			socketRef.current?.off("public_message");
-			socketRef.current?.off("error");
-		};
-	}, [session]);
+				sendCallback.current = (message: string) => {
+					console.log("Emitting message:", message);
+					if (!socketRef.current) return;
+
+					socketRef.current.emit("submit_public_message2", {
+						session: session,
+						message: message,
+					});
+
+					(document.querySelector("#msg") as HTMLInputElement).value = "";
+				};
+				return () => {
+					socketRef.current?.off("public_message2");
+					socketRef.current?.off("error");
+				};
+			case "ch-03":
+				socketRef.current.on("public_message3", (msg) => {
+					console.log("Received message:", msg);
+					setMessages((prevMessages) => [msg, ...prevMessages]);
+				});
+
+				socketRef.current.on("error", (error) => {
+					console.error("WebSocket error:", error);
+				});
+
+				sendCallback.current = (message: string) => {
+					console.log("Emitting message:", message);
+					if (!socketRef.current) return;
+
+					socketRef.current.emit("submit_public_message3", {
+						session: session,
+						message: message,
+					});
+
+					(document.querySelector("#msg") as HTMLInputElement).value = "";
+				};
+				return () => {
+					socketRef.current?.off("public_message");
+					socketRef.current?.off("error");
+				};
+			default:
+				throw new Error("Channel not found.");
+		}
+	}, [session, type]);
 
 	return (
 		<>
-			<PublicMessageFeed lang={lang} session={session} messages={messageList} />
+			<h2>Channel: {type}</h2>
+			{areMessages?<PublicMessageFeed lang={lang} session={session} messages={messageList} />:<Dialog status="loading" message="Loading messages..." visible></Dialog>}
 			{messages && (
 				<MessageSendForm
 					lang={lang}
