@@ -8,6 +8,7 @@ import manage from "./manage";
 import settings from "./settings";
 import admin from "./admin";
 import misc from "./misc";
+import messages from "./messages";
 export default {
 	index: index,
 	login: login,
@@ -15,6 +16,7 @@ export default {
 	navbar: navbar,
 	dropdown_menu: dropdown_menu,
 	message_bar: message_bar,
+	messages:messages,
 	manage: manage,
 	settings: settings,
 	admin:admin,

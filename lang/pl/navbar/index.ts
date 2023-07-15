@@ -5,9 +5,9 @@ export default {
     ],
     links:{
         channels:[
-            "Publiczne wiadomości",
-            "Wiadomości moderatorów",
-            "Wiadomości administratorów"
+            "Kanał 01",
+            "Kanał 02",
+            "Kanał 03"
         ],
         direct:"Wszystkie wiadomości"
     },

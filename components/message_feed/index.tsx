@@ -7,6 +7,7 @@ import MessageObject from "@/lib/types/message";
 import { Socket, io } from "socket.io-client";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import Dialog from "@/components/warning";
+import { translate } from "@/lang";
 
 const GeneralMessageFeedComponent = ({
 	type,
@@ -19,7 +20,8 @@ const GeneralMessageFeedComponent = ({
 	lang: string;
 	messages: boolean;
 }) => {
-	const [areMessages, setAreMessages]  = useState(false)
+	const dict = translate(lang);
+	const [areMessages, setAreMessages] = useState(false);
 	const [messageList, setMessages] = useState<MessageObject[]>([]);
 	const sendCallback = useRef<(message: string) => void>(
 		(message: string) => {}
@@ -40,7 +42,7 @@ const GeneralMessageFeedComponent = ({
 		).then((res) => {
 			res.json().then((json) => {
 				setMessages(json.res);
-				setAreMessages(true)
+				setAreMessages(true);
 			});
 		});
 	}, [type, session]);
@@ -137,8 +139,16 @@ const GeneralMessageFeedComponent = ({
 
 	return (
 		<>
-			<h2>Channel: {type}</h2>
-			{areMessages?<PublicMessageFeed lang={lang} session={session} messages={messageList} />:<Dialog status="loading" message="Loading messages..." visible></Dialog>}
+			<h2>{dict.messages.channel} {type}</h2>
+			{areMessages ? (
+				<PublicMessageFeed
+					lang={lang}
+					session={session}
+					messages={messageList}
+				/>
+			) : (
+				<Dialog status="loading" message={dict.messages.loading} visible></Dialog>
+			)}
 			{messages && (
 				<MessageSendForm
 					lang={lang}
