@@ -61,7 +61,9 @@ const GeneralMessageFeedComponent = ({
 	}, [type, session]);
 
 	useEffect(() => {
-		socketRef.current = io("wss://192.168.50.156:4433", {
+		const host = window.location.hostname;
+		// socketRef.current = io(`wss://${host}:4433`, {
+		socketRef.current = io(`wss://7.tcp.eu.ngrok.io:10921`, {
 			rejectUnauthorized: false,
 			reconnection: true,
 			reconnectionAttempts: 5,

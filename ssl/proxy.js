@@ -13,8 +13,8 @@ const proxy = httpProxy.createProxyServer({
 });
 
 const options = {
-	cert: fs.readFileSync("./ssl/server.crt"),
-	key: fs.readFileSync("./ssl/server.key"),
+	cert: fs.readFileSync("./ssl/http.crt"),
+	key: fs.readFileSync("./ssl/http.key"),
 	ca: [fs.readFileSync("./ssl/root.crt")],
 };
 
@@ -94,6 +94,8 @@ https
 			}
 		});
 		console.log("Sending back response");
+		console.log(req.headers.host)
+		req.headers['x-original-host'] = req.headers.host
 		proxy.web(req, res);
 	})
 	.listen(443, () => {

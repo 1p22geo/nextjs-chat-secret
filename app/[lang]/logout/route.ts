@@ -8,5 +8,8 @@ export function GET(request:NextRequest, { params }: { params: { lang: string } 
         path:"/",
         maxAge:-1
     })
-    return NextResponse.redirect(`https://192.168.50.156/${params.lang}`) // REPLACE THIS IN PRODUCTION
+    const host = headers().get('x-original-host')
+    // return NextResponse.redirect(`https://${host}/${params.lang}`)  // REPLACE THIS IN PRODUCTION
+    return NextResponse.redirect(`https://6.tcp.eu.ngrok.io:14642/${params.lang}`)  // REPLACE THIS IN PRODUCTION
+                                                                    // ok done.
 }
