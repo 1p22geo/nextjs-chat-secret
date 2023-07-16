@@ -1,4 +1,5 @@
 export default {
     loading:"Loading messages...",
-    channel:"Channel: "
+    channel:"Channel: ",
+    error:"An error happened while fetching messages"
 }

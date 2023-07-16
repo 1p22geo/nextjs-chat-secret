@@ -5,6 +5,9 @@
 .background_gradient{
   background: linear-gradient(237.61deg, #F0F5FF 15.15%, #B2C8F7 94.09%);
 }
+.emoji-gradient{
+  background: linear-gradient(to bottom, #eee, #eee 70%, transparent 80%);
+}
 .footer_shadow{
   box-shadow: 0px 0px 70px 90px rgb(100 116 139);
 }

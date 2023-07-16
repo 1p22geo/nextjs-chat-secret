@@ -22,6 +22,7 @@ const GeneralMessageFeedComponent = ({
 }) => {
 	const dict = translate(lang);
 	const [areMessages, setAreMessages] = useState(false);
+	const [isError, setIsError] = useState(false);
 	const [messageList, setMessages] = useState<MessageObject[]>([]);
 	const sendCallback = useRef<(message: string) => void>(
 		(message: string) => {}
@@ -33,7 +34,12 @@ const GeneralMessageFeedComponent = ({
 		try {
 			const item = localStorage.getItem("skyChatConfig.MaxMessageNum");
 			messagesnum = parseInt(item?.toString() as string);
-		} catch {}
+			if(isNaN(messagesnum)){
+				messagesnum = 4
+			}
+		} catch {
+			messagesnum = 4
+		}
 
 		fetch(
 			`/api/messages?session=${session}&n=${messagesnum.toString()}&feed=${encodeURIComponent(
@@ -41,8 +47,15 @@ const GeneralMessageFeedComponent = ({
 			)}`
 		).then((res) => {
 			res.json().then((json) => {
-				setMessages(json.res);
-				setAreMessages(true);
+				if(json){
+					setMessages(json.res);
+					setAreMessages(true);
+					
+				}
+				else{
+					setAreMessages(true);
+					setMessages([])
+				}
 			});
 		});
 	}, [type, session]);
@@ -139,7 +152,8 @@ const GeneralMessageFeedComponent = ({
 
 	return (
 		<>
-			<h2>{dict.messages.channel} {type}</h2>
+			<h2 className="font-semibold mb-4 max-sm:text-center">{dict.messages.channel} {type}</h2>
+			{isError?<div className="w-fit mx-auto"><Dialog status="error" icon="error" message={dict.messages.error} visible></Dialog></div>:<></>}
 			{areMessages ? (
 				<PublicMessageFeed
 					lang={lang}
@@ -147,8 +161,12 @@ const GeneralMessageFeedComponent = ({
 					messages={messageList}
 				/>
 			) : (
-				<Dialog status="loading" message={dict.messages.loading} visible></Dialog>
-			)}
+				<div className="w-fit mx-auto">
+
+					<Dialog status="loading" message={dict.messages.loading} visible></Dialog>
+				</div>
+			)
+		}
 			{messages && (
 				<MessageSendForm
 					lang={lang}
