@@ -17,7 +17,7 @@ const MessageSendForm = (props: {
 			<div className="fixed right-0 bottom-0 w-full z-20 max-w-[900px] p-8 ">
 				<form onSubmit={props.onSubmit} className="flex items-center">
 					<div className="h-8 w-8 -mr-10 z-30 rounded-full cursor-pointer hover:bg-slate-300 group">
-						<div className="fixed right-8 bottom-[72px] cursor-default  w-full hidden group-hover:block max-w-[900px] h-72">
+						<div className="fixed right-0 bottom-[72px] cursor-default  w-full hidden group-hover:block max-w-[900px] px-8 h-72">
 							<EmojiSelect send={(message:string)=>{
                                 inputref.current.value += message
                             }} />

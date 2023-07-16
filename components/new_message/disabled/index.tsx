@@ -7,7 +7,7 @@ const DisabledMessageSendForm = ({lang}:{lang:string}) => {
     const dict = translate(lang)
     return ( 
     <>
-    <div className="fixed right-0 bottom-0 z-10 w-full max-w-[600px] p-8 ">
+    <div className="fixed right-0 bottom-0 z-10 w-full max-w-[900px] p-8 ">
         <form onSubmit={(e:FormEvent<HTMLFormElement>)=>{e.preventDefault();return false;}} className="flex items-center">
         <input id="msg" name="msg" disabled type="text" className={`rounded-full p-3 text-xl w-full shadow-2xl flex accent-[#F35627] caret-[#F35627]`} placeholder={dict.message_bar.disabled}></input>
         <label htmlFor="submitmsg" className={`p-2 bg-[#d16f51] cursor-not-allowed w-24 justify-evenly -ml-[102px] rounded-full flex items-center font-semibold text-white`}>
