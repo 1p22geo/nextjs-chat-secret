@@ -63,7 +63,7 @@ const GeneralMessageFeedComponent = ({
 	useEffect(() => {
 		const host = window.location.hostname;
 		// socketRef.current = io(`wss://${host}:4433`, {
-		socketRef.current = io(`wss://7.tcp.eu.ngrok.io:10921`, {
+		socketRef.current = io(`wss://localhost:4433`, {
 			rejectUnauthorized: false,
 			reconnection: true,
 			reconnectionAttempts: 5,
