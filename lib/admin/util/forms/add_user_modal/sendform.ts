@@ -1,7 +1,8 @@
 "use client";
 import { FormEvent } from "react";
 import { hideAll } from "./funcs";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
 
 export async function sendForm(
 	e: FormEvent,

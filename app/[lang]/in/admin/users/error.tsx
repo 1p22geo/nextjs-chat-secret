@@ -7,7 +7,7 @@ import Dialog from "@/components/warning";
 const ErrorPage = () => {
 	"use client"
 	const params = useParams()
-	const lang = params.lang
+	const lang = typeof params.lang == "string" ? params.lang : params.lang[0]
 
 	const dict = translate(lang)
 

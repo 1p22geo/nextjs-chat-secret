@@ -1,8 +1,8 @@
 export default {
     database:{
-        DB_CONN_STRING:"mongodb+srv://dbuser:A3rZbY7tLorCXZUR@cluster0.nthvuuy.mongodb.net/?retryWrites=true&w=majority"
+        DB_CONN_STRING:"mongodb://127.0.0.1:27017"
     },
     application:{
-        ROOT_PASS:"P=4pierkwadrat"
+        ROOT_PASS:"root"
     }
 }
